@@ -44,7 +44,7 @@ function App() {
     <div className='w-screen h-screen overflow-hidden'>
       <Canvas>
           {/* Allow panning and zooming with mouse */}
-          <OrbitControls enableZoom={true} rotateSpeed={0.7} />
+          <OrbitControls enableZoom={true} rotateSpeed={0.5} zoomSpeed={0.5} />
 
           {/* Allow panning and zooming with mouse */}
           <SceneBackground texturePath={texturePath} />
@@ -68,12 +68,6 @@ function App() {
           <Torus args={[2.5, 0.0005, 16, 100]} position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
             <meshBasicMaterial color="white" />
           </Torus>
-
-
-          {/* 
-            Torus around earth, ring was more disc like, 
-            but this may be an indication of a scale issue with the planets.
-          */}
 
       </Canvas>
     </div>
