@@ -39,14 +39,14 @@ const SceneBackground: React.FC<SceneBackgroundProps> = ({ texturePath }) => {
 
 function App() {
   const texturePath = '/images/background/stars_8k.jpg';
-
+  
   return (
     <div className='w-screen h-screen overflow-hidden'>
       <Canvas>
           {/* Allow panning and zooming with mouse */}
           <OrbitControls enableZoom={true} rotateSpeed={0.5} zoomSpeed={0.5} />
 
-          {/* Allow panning and zooming with mouse */}
+          {/* Background Image of solar system */}
           <SceneBackground texturePath={texturePath} />
           
           {/* Lighting */}
