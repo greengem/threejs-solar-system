@@ -1,10 +1,12 @@
 import './App.css';
+import { useEffect } from 'react';
+
 import { Canvas, useLoader, useThree } from '@react-three/fiber';
 import { TextureLoader, EquirectangularReflectionMapping } from 'three';
 import { OrbitControls } from '@react-three/drei';
-import { useEffect } from 'react';
-import Planet from './components/celestial/Planet';
+
 import Sun from './components/celestial/Sun';
+import Earth from './components/celestial/Earth';
 
 type SceneBackgroundProps = {
   texturePath: string;
@@ -45,7 +47,7 @@ function App() {
         <pointLight position={[10, 10, 10]} />
         <pointLight position={[-10, -10, -10]} />
         <Sun position={[0, 0, 0]} />
-        <Planet position={[5, 0, 0]} color="red" size={1} />
+        <Earth position={[2, 0, 0]} />
       </Canvas>
     </div>
   );
