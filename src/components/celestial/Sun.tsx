@@ -4,14 +4,15 @@ import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
 
 interface SunProps {
   position: Vector3 | [number, number, number];
+  radius: number;
 }
 
-const Sun: React.FC<SunProps> = ({ position }) => {
-  const sunTexture = useLoader(TextureLoader, '/images/bodies/sun.jpg');
+const Sun: React.FC<SunProps> = ({ position, radius }) => {
+  const sunTexture = useLoader(TextureLoader, '/images/bodies/sun_8k.jpg');
 
   return (
     <mesh position={position}>
-      <Sphere args={[1, 32, 32]}>
+      <Sphere args={[radius, 32, 32]}>
         <MeshWobbleMaterial
           map={sunTexture}
           emissive="#FFFF99"

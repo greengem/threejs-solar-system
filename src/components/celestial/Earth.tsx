@@ -5,14 +5,15 @@ import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
 
 interface EarthProps {
   position: Vector3 | [number, number, number];
+  radius: number;
 }
 
-const Earth: React.FC<EarthProps> = ({ position }) => {
-  const earthTexture = useLoader(TextureLoader, '/images/bodies/earth.jpg');
+const Earth: React.FC<EarthProps> = ({ position, radius }) => {
+  const earthTexture = useLoader(TextureLoader, '/images/bodies/earth_8k.jpg');
 
   return (
     <mesh position={position}>
-      <Sphere args={[0.05, 32, 32]}>
+      <Sphere args={[radius, 32, 32]}>
         <MeshWobbleMaterial
           map={earthTexture}
           factor={0.1}
