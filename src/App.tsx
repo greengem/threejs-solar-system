@@ -41,13 +41,24 @@ function App() {
   return (
     <div className='w-screen h-screen overflow-hidden'>
       <Canvas>
-        <OrbitControls enableZoom={true} rotateSpeed={0.7} />
-        <SceneBackground texturePath={texturePath} />
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        <pointLight position={[-10, -10, -10]} />
-        <Sun position={[0, 0, 0]} />
-        <Earth position={[2, 0, 0]} />
+          <OrbitControls enableZoom={true} rotateSpeed={0.7} />
+          <SceneBackground texturePath={texturePath} />
+          
+          <ambientLight intensity={0.2} />
+
+          <pointLight position={[0, 0, 0]} intensity={1.5} decay={2} distance={10} />
+
+          <directionalLight
+            intensity={1} 
+            position={[2, 2, 2]} 
+            target-position={[0, 0, 0]}
+          />
+
+          <pointLight position={[10, 10, 10]} intensity={0.5} />
+          <pointLight position={[-10, -10, -10]} intensity={0.5} />
+
+          <Sun position={[0, 0, 0]} />
+          <Earth position={[2, 0, 0]} />
       </Canvas>
     </div>
   );
