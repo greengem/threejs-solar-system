@@ -16,13 +16,12 @@ const Sun: React.FC<SunProps> = ({ position }) => {
           map={sunTexture}
           emissive="#FFFF99"
           emissiveIntensity={0.012}
-          factor={0.3}
-          speed={0.15}
+          factor={0.1}
+          speed={0.05}
         />
       </Sphere>
     </mesh>
   );
 };
-
 
 export default Sun;
