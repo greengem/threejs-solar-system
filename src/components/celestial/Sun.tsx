@@ -8,7 +8,7 @@ interface SunProps {
 }
 
 const Sun: React.FC<SunProps> = ({ position, radius }) => {
-  const sunTexture = useLoader(TextureLoader, '/images/bodies/sun_8k.jpg');
+  const sunTexture = useLoader(TextureLoader, '/images/bodies/sun_2k.jpg');
 
   return (
     <mesh position={position}>

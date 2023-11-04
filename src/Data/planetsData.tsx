@@ -25,7 +25,7 @@ const planetsData: PlanetData[] = [
     },
     {
       name: "Earth",
-      texturePath: "/images/bodies/earth_8k.jpg",
+      texturePath: "/images/bodies/earth_2k.jpg",
       position: new Vector3(2, 0, 0),
       radius: 0.15,
       rotationSpeed: 1,
