@@ -1,41 +1,17 @@
-import './App.css';
-import { useEffect } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 
-import { Canvas, useLoader, useThree } from '@react-three/fiber';
-import { TextureLoader, EquirectangularReflectionMapping } from 'three';
-import { OrbitControls, Torus } from '@react-three/drei';
-
+import SceneBackground from './components/SceneBackground';
 import Sun from './components/celestial/Sun';
 
 import Mercury from './components/celestial/Mercury';
+import Venus from './components/celestial/Venus';
 import Earth from './components/celestial/Earth';
-
-type SceneBackgroundProps = {
-  texturePath: string;
-};
-
-const SceneBackground: React.FC<SceneBackgroundProps> = ({ texturePath }) => {
-  const { scene, camera } = useThree();
-
-  useEffect(() => {
-    camera.position.set(0, 0, 10);
-    camera.lookAt(0, 0, 0);
-  }, []);
-  
-  const texture = useLoader(TextureLoader, texturePath);
-
-  useEffect(() => {
-    const prevBackground = scene.background;
-    texture.mapping = EquirectangularReflectionMapping;
-    scene.background = texture;
-
-    return () => {
-      scene.background = prevBackground;
-    };
-  }, [texture, scene]);
-
-  return null;
-};
+import Mars from './components/celestial/Mars';
+import Jupiter from './components/celestial/Jupiter';
+import Saturn from './components/celestial/Saturn';
+import Uranus from './components/celestial/Uranus';
+import Neptune from './components/celestial/Neptune';
 
 function App() {
   const texturePath = '/images/background/stars_8k.jpg';
@@ -56,19 +32,17 @@ function App() {
           <pointLight position={[10, 10, 10]} intensity={0.5} />
           <pointLight position={[-10, -10, -10]} intensity={0.5} />
 
-          {/* Planets */}
           <Sun position={[0, 0, 0]} radius={1} />
-
-          <Mercury position={[1.2, 0, 0]} radius={0.0088} />
-          <Torus args={[1.2, 0.0005, 16, 100]} position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
-            <meshBasicMaterial color="white" />
-          </Torus>
-
-          <Earth position={[2.5, 0, 0]} radius={0.0092} />
-          <Torus args={[2.5, 0.0005, 16, 100]} position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
-            <meshBasicMaterial color="white" />
-          </Torus>
-
+          
+          {/* Planets */}
+          <Mercury position={[1.2, 0, 0]} radius={0.15} />
+          <Venus position={[1.6, 0, 0]} radius={0.15} />
+          <Earth position={[2, 0, 0]} radius={0.15} />
+          <Mars position={[2.4, 0, 0]} radius={0.15} />
+          <Jupiter position={[2.8, 0, 0]} radius={0.15} />
+          <Saturn position={[3.2, 0, 0]} radius={0.15} />
+          <Uranus position={[3.6, 0, 0]} radius={0.15} />
+          <Neptune position={[4, 0, 0]} radius={0.15} />
       </Canvas>
     </div>
   );

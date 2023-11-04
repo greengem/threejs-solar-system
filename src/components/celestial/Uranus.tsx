@@ -4,20 +4,20 @@ import { useLoader } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
 import Ring from '../../components/Ring';
 
-interface MercuryProps {
+interface UranusProps {
   position: Vector3 | [number, number, number];
   radius: number;
 }
 
-const Mercury: React.FC<MercuryProps> = ({ position, radius }) => {
-  const mercuryTexture = useLoader(TextureLoader, '/images/bodies/mercury_2k.jpg');
+const Uranus: React.FC<UranusProps> = ({ position, radius }) => {
+  const uranusTexture = useLoader(TextureLoader, '/images/bodies/uranus_2k.jpg');
   const orbitRadius = Array.isArray(position) ? position[0] : position.x;
 
   return (
     <>
       <mesh position={position}>
         <Sphere args={[radius, 32, 32]}>
-          <meshStandardMaterial map={mercuryTexture} />
+          <meshStandardMaterial map={uranusTexture} />
         </Sphere>
       </mesh>
       <Ring radius={orbitRadius} />
@@ -25,4 +25,4 @@ const Mercury: React.FC<MercuryProps> = ({ position, radius }) => {
   );
 };
 
-export default Mercury;
+export default Uranus;
