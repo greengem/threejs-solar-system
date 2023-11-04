@@ -4,18 +4,27 @@ import { OrbitControls } from '@react-three/drei';
 
 import SceneBackground from './components/SceneBackground';
 import Sun from './components/celestial/Sun';
-
 import Planet from './components/celestial/Planets';
 import planetsData from './Data/planetsData';
+import PlanetMenu from './components/PlanetMenu';
+
 
 function App() {
   const texturePath = '/images/background/stars_8k.jpg';
+  
+  const handlePlanetSelect = () => {
+    console.log('handlePlanetSelect called');
+  };
   
   return (
     <div className='w-screen h-screen overflow-hidden'>
       <Canvas>
           {/* Allow panning and zooming with mouse */}
-          <OrbitControls enableZoom={true} rotateSpeed={0.5} zoomSpeed={0.5} />
+          <OrbitControls
+            enableZoom={true}
+            rotateSpeed={0.5}
+            zoomSpeed={0.5}
+          />
 
           {/* Background Image of solar system */}
           <SceneBackground texturePath={texturePath} />
@@ -40,6 +49,7 @@ function App() {
             />
           ))}
       </Canvas>
+      <PlanetMenu planets={planetsData} onSelect={handlePlanetSelect} />
     </div>
   );
 }
