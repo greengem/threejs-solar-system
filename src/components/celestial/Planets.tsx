@@ -1,24 +1,21 @@
-import React from 'react';
-import { TextureLoader, Vector3 } from 'three';
+import { useMemo } from 'react';
+import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
 import Ring from '../Ring';
+import { PlanetData } from '../../../types';
 
-interface PlanetProps {
-  texturePath: string;
-  position: Vector3;
-  radius: number;
-  wobble?: boolean;
-}
-
-const Planet: React.FC<PlanetProps> = ({ texturePath, position, radius, wobble }) => {
+const Planet: React.FC<PlanetData> = ({ texturePath, position, radius, wobble }) => {
   const texture = useLoader(TextureLoader, texturePath);
+  const sphereArgs = useMemo(() => {
+    return [radius, 32, 32] as [number, number, number];
+  }, [radius]);
   const orbitRadius = position.x;
 
   return (
     <>
       <mesh position={position}>
-        <Sphere args={[radius, 32, 32]}>
+        <Sphere args={sphereArgs}>
           {wobble ? (
             <MeshWobbleMaterial map={texture} factor={0.1} speed={0.5} />
           ) : (
