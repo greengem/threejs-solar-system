@@ -5,7 +5,7 @@ import { OrbitControls as DreiOrbitControls } from '@react-three/drei';
 import { useSelectedPlanet } from '../contexts/SelectedPlanetContext';
 
 const CameraController: React.FC = () => {
-  const orbitControlsRef = useRef<DreiOrbitControls>(null);
+  const orbitControlsRef = useRef<any>(null); // FIX USE CORRECT TYPE
   const { camera } = useThree();
   const [selectedPlanet] = useSelectedPlanet();
 

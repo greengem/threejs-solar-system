@@ -12,7 +12,7 @@ import PlanetsUpdater from './PlanetsUpdater';
 function SolarSystem() {
   
   const [planetAngles, setPlanetAngles] = useState<{ [key: string]: number }>(
-    planetsData.reduce((acc, planet) => {
+    planetsData.reduce<{ [key: string]: number }>((acc, planet) => { 
       acc[planet.name] = 0;
       return acc;
     }, {})

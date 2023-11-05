@@ -8,16 +8,10 @@ import { PlanetData } from '../../../types';
 type ExtendedPlanetData = PlanetData & { angle: number };
 
 const Planet: React.FC<ExtendedPlanetData> = ({
-  name,
   texturePath,
   position,
   radius,
-  rotationSpeed,
-  tilt,
-  orbitSpeed,
-  moons,
   wobble,
-  rings,
   angle, // This is the new prop
 }) => {
 
