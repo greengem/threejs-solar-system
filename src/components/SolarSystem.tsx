@@ -4,7 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import CameraController from './CameraController';
 import SceneBackground from './SceneBackground';
 import Sun from './celestial/Sun';
-import planetsData from '../data/planetsData';
+import planetsData from '../lib/planetsData';
 import Planet from './celestial/Planets';
 import PlanetMenu from './PlanetMenu';
 import PlanetsUpdater from './PlanetsUpdater';
