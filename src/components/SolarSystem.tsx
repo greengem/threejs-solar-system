@@ -9,10 +9,11 @@ import Planet from './celestial/Planets';
 import PlanetMenu from './PlanetMenu';
 import PlanetsUpdater from './PlanetsUpdater';
 import SpeedControl from './SpeedControl';
+import { PlanetData } from '../../types';
 
 function SolarSystem() {
   const [planetOrbitProgress, setPlanetOrbitProgress] = useState<{ [key: string]: number }>(
-    planetsData.reduce<{ [key: string]: number }>((acc, planet) => {
+    planetsData.reduce<{ [key: string]: number }>((acc, planet: PlanetData) => {
       acc[planet.name] = 0;
       return acc;
     }, {})
