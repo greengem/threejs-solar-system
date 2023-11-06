@@ -10,7 +10,7 @@ const SceneBackground: React.FC<SceneBackgroundProps> = ({ texturePath }) => {
   const { scene, camera } = useThree();
 
   useEffect(() => {
-    camera.position.set(0, 0, 10);
+    camera.position.set(40, 40, 40);
     camera.lookAt(0, 0, 0);
   }, [camera]);
 

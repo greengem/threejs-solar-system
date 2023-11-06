@@ -35,6 +35,7 @@ function SolarSystem() {
           <Planet
             key={planet.name}
             name={planet.name}
+            description={planet.description}
             texturePath={planet.texturePath}
             position={planet.position}
             radius={planet.radius}
