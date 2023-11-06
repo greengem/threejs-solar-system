@@ -1,21 +1,32 @@
-// PlanetsUpdater.tsx
+import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import planetsData from '../Data/planetsData';
+import { PlanetData } from '../../types';
+import { useSpeedControl } from '../contexts/SpeedControlContext';
 
 type PlanetsUpdaterProps = {
-  setPlanetAngles: React.Dispatch<React.SetStateAction<{ [key: string]: number }>>;
+  setPlanetOrbitProgress: React.Dispatch<React.SetStateAction<{ [key: string]: number }>>;
+  planets: PlanetData[];
 };
 
-const PlanetsUpdater: React.FC<PlanetsUpdaterProps> = ({ setPlanetAngles }) => {
+// Define a global factor to adjust all orbit speeds
+const ORBIT_SPEED_FACTOR = 50; // For example, this factor would increase the speeds by 20%
+
+const PlanetsUpdater: React.FC<PlanetsUpdaterProps> = ({ setPlanetOrbitProgress, planets }) => {
+  const { speedFactor } = useSpeedControl();
+  const lastElapsedTimeRef = useRef(0);
+
   useFrame(({ clock }) => {
     const elapsedTime = clock.getElapsedTime();
-    setPlanetAngles((prevAngles) => {
-      const newAngles = { ...prevAngles };
-      for (const planet of planetsData) {
-        const orbitSpeedRadians = (planet.orbitSpeed / 360) * (2 * Math.PI);
-        newAngles[planet.name] = orbitSpeedRadians * elapsedTime;
-      }
-      return newAngles;
+    const deltaTime = elapsedTime - lastElapsedTimeRef.current;
+    lastElapsedTimeRef.current = elapsedTime;
+
+    setPlanetOrbitProgress((prevOrbitProgress) => {
+      return planets.reduce((acc, planet) => {
+        // Apply the ORBIT_SPEED_FACTOR to each planet's orbit speed
+        const orbitSpeedRadians = (((planet.orbitSpeed * ORBIT_SPEED_FACTOR) / 360) * (2 * Math.PI)) * speedFactor;
+        acc[planet.name] = (prevOrbitProgress[planet.name] || 0) + orbitSpeedRadians * deltaTime;
+        return acc;
+      }, { ...prevOrbitProgress });
     });
   });
 
