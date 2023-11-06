@@ -1,11 +1,6 @@
 // types.ts
 import { Vector3 } from 'three';
 
-export interface RingsData {
-    texturePath: string;
-    size: [number, number];
-}
-
 export interface PlanetData {
     name: string;
     texturePath: string;
@@ -17,6 +12,12 @@ export interface PlanetData {
     moons: MoonData[];
     wobble?: boolean;
     rings?: RingsData;
+    orbitalPosition?: number;
+}
+
+export interface RingsData {
+    texturePath: string;
+    size: [number, number];
 }
 
 export interface MoonData {
