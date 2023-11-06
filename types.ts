@@ -3,6 +3,7 @@ import { Vector3 } from 'three';
 
 export interface PlanetData {
     name: string;
+    description: string;
     texturePath: string;
     position: Vector3;
     radius: number;
