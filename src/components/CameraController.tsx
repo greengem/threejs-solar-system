@@ -13,25 +13,33 @@ const CameraController: React.FC = () => {
 
   useFrame(() => {
     const controls = orbitControlsRef.current;
-
+    const lerpTarget = new Vector3();
+    
     if (selectedPlanet) {
       const currentPlanetPosition = planetPositions[selectedPlanet.name];
-
+  
       if (currentPlanetPosition) {
         const planetPosition = new Vector3(...currentPlanetPosition);
-
+  
         if (controls) controls.enabled = false;
-
-        camera.position.lerp(planetPosition.clone().add(new Vector3(1, 0, 0).multiplyScalar(selectedPlanet.radius * 3)), 0.1);
+  
+        lerpTarget.copy(planetPosition).add(new Vector3(1, 0.5, 0).multiplyScalar(selectedPlanet.radius * 3));
+        camera.position.lerp(lerpTarget, 0.02);
         camera.lookAt(planetPosition);
       }
-
     } else {
+      const remotePosition = new Vector3(7, 4, 7);
+  
+      lerpTarget.copy(remotePosition);
+      camera.position.lerp(lerpTarget, 0.02);
+      
       if (controls) controls.enabled = true;
+      //camera.lookAt(0, 0, 0);
     }
-
+  
     camera.updateProjectionMatrix();
   });
+  
 
   return (
     <DreiOrbitControls
