@@ -1,36 +1,32 @@
 //PlanetPositionsContext.tsx
-import { createContext, useState, useContext, ReactNode } from 'react';
-import { Vector3 } from 'three';
-
-type PlanetPositionsState = {
-  [planetName: string]: Vector3;
-};
+import React, { createContext, useState, useContext, useCallback, ReactNode } from 'react';
 
 type PlanetPositionsContextType = {
-  planetPositions: PlanetPositionsState;
-  setPlanetPositions: React.Dispatch<React.SetStateAction<PlanetPositionsState>>;
+  planetPositions: { [key: string]: [number, number, number] };
+  setPlanetPosition: (name: string, position: [number, number, number]) => void;
 };
 
-const PlanetPositionsContext = createContext<PlanetPositionsContextType | undefined>(undefined);
+export const PlanetPositionsContext = createContext<PlanetPositionsContextType>({
+  planetPositions: {},
+  setPlanetPosition: () => {},
+});
 
-export const usePlanetPositions = () => {
-  const context = useContext(PlanetPositionsContext);
-  if (!context) {
-    throw new Error('usePlanetPositions must be used within a PlanetPositionsProvider');
-  }
-  return context;
-};
-
-interface PlanetPositionsProviderProps {
+type PlanetPositionsProviderProps = {
   children: ReactNode;
-}
+};
 
 export const PlanetPositionsProvider: React.FC<PlanetPositionsProviderProps> = ({ children }) => {
-  const [planetPositions, setPlanetPositions] = useState<PlanetPositionsState>({});
+  const [planetPositions, setPlanetPositions] = useState<{ [key: string]: [number, number, number] }>({});
+
+  const setPlanetPosition = useCallback((name: string, position: [number, number, number]) => {
+    setPlanetPositions((prev) => ({ ...prev, [name]: position }));
+  }, []);
 
   return (
-    <PlanetPositionsContext.Provider value={{ planetPositions, setPlanetPositions }}>
+    <PlanetPositionsContext.Provider value={{ planetPositions, setPlanetPosition }}>
       {children}
     </PlanetPositionsContext.Provider>
   );
 };
+
+export const usePlanetPositions = () => useContext(PlanetPositionsContext);
