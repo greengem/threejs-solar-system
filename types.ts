@@ -12,7 +12,7 @@ export interface PlanetData {
     moons: MoonData[];
     wobble?: boolean;
     rings?: RingsData;
-    orbitalPosition?: number;
+    orbitalPosition?: Vector3;
 }
 
 export interface RingsData {
