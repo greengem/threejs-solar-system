@@ -9,6 +9,7 @@ import Planet from './celestial/Planets';
 import PlanetMenu from './PlanetMenu';
 import PlanetsUpdater from './PlanetsUpdater';
 import SpeedControl from './SpeedControl';
+import PlanetDetail from './PlanetDetail';
 import { PlanetData } from '../../types';
 
 function SolarSystem() {
@@ -50,6 +51,8 @@ function SolarSystem() {
       </Canvas>
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
+      <PlanetDetail />
+      <p className='absolute top-5 left-5 text-white'>CHRIS WAITT - DEV PREVIEW</p>
     </>
   );
 }

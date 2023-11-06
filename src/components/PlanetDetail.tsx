@@ -1,23 +1,31 @@
 // PlanetDetail.tsx
 import { Button } from '@nextui-org/react';
-import { useSelectedPlanet } from '../contexts/SelectedPlanetContext'; // Import the context hook
+import { useSelectedPlanet } from '../contexts/SelectedPlanetContext';
+//import { useSpeedControl } from '../contexts/SpeedControlContext';
+import { Card, CardBody } from '@nextui-org/react';
 
 const PlanetDetail: React.FC = () => {
-  // Use the useSelectedPlanet hook to access the selected planet data
-  const [selectedPlanet] = useSelectedPlanet();
+  const [selectedPlanet, setSelectedPlanet] = useSelectedPlanet();
+  //const { setSpeedFactor } = useSpeedControl();
 
+  const handleExitDetailMode = () => {
+    setSelectedPlanet(null);
+    //setSpeedFactor(1); // Restore the speed to its previous value or a default one
+  };
+
+  // Render nothing if no planet is selected
+  if (!selectedPlanet) return null;
+
+  // If a planet is selected, render the detail card
   return (
-    <div className="planet-detail bg-gray-900 absolute top-20 bottom-20 right-5 p-5 rounded-lg w-[400px]">
-      {/* Check if a planet is selected and display its name */}
-      {selectedPlanet ? (
-        <>
-          <p className='text-white'>{selectedPlanet.name}</p>
-          <Button>Exit Detail View</Button>
-        </>
-      ) : (
-        <p className='text-white'>No planet selected</p>
-      )}
-    </div>
+    <Card className='absolute bottom-5 right-5 w-[300px] h-[300px] bg-gray-900 shadow-lg'>
+      <CardBody>
+        <h1 className='text-lg font-semibold tracking-tight uppercase text-white'>{selectedPlanet.name}</h1>
+        <Button color='secondary' className='absolute bottom-5 left-5' onClick={handleExitDetailMode}>
+          Exit Detail View
+        </Button>
+      </CardBody>
+    </Card>
   );
 };
 

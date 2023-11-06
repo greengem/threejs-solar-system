@@ -1,6 +1,6 @@
 // PlanetMenu.tsx
 import React from 'react';
-import { useSpeedControl } from '../contexts/SpeedControlContext';
+//import { useSpeedControl } from '../contexts/SpeedControlContext';
 import { useSelectedPlanet } from '../contexts/SelectedPlanetContext';
 import { PlanetData } from '../../types';
 import { Button } from '@nextui-org/react';
@@ -11,12 +11,12 @@ interface PlanetMenuProps {
 
 const PlanetMenu: React.FC<PlanetMenuProps> = ({ planets }) => {
   const [, setSelectedPlanet] = useSelectedPlanet();
-  const { setSpeedFactor } = useSpeedControl();
+  //const { setSpeedFactor } = useSpeedControl();
   
   const handleSelect = (planetName: string) => {
     const selected = planets.find((planet) => planet.name === planetName);
     setSelectedPlanet(selected ?? null);
-    setSpeedFactor(0);
+    //setSpeedFactor(0);
   };
 
   return (
