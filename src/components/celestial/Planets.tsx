@@ -1,13 +1,15 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
 import Ring from '../Ring';
 import { PlanetData } from '../../../types';
+import { usePlanetPositions } from '../../contexts/PlanetPositionsContext';
 
 type ExtendedPlanetData = PlanetData & { orbitProgress: number };
 
 const Planet: React.FC<ExtendedPlanetData> = ({
+  name, 
   texturePath,
   position,
   radius,
@@ -16,14 +18,18 @@ const Planet: React.FC<ExtendedPlanetData> = ({
 }) => {
 
   const texture = useLoader(TextureLoader, texturePath);
-  const sphereArgs = useMemo(() => {
-    return [radius, 32, 32] as [number, number, number];
-  }, [radius]);
+  
+  const { setPlanetPosition } = usePlanetPositions();
+
+  const sphereArgs = useMemo(() => [radius, 32, 32] as [number, number, number], [radius]);
 
   const orbitRadius = position.x;
-
   const x = Math.cos(orbitProgress) * orbitRadius;
   const z = Math.sin(orbitProgress) * orbitRadius;
+
+  useEffect(() => {
+    setPlanetPosition(name, [x, 0, z]);
+  }, [x, z, name, setPlanetPosition]);
 
   return (
     <>
