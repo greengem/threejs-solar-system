@@ -8,8 +8,7 @@ type PlanetsUpdaterProps = {
   planets: PlanetData[];
 };
 
-// Define a global factor to adjust all orbit speeds
-const ORBIT_SPEED_FACTOR = 50; // For example, this factor would increase the speeds by 20%
+const ORBIT_SPEED_FACTOR = 50;
 
 const PlanetsUpdater: React.FC<PlanetsUpdaterProps> = ({ setPlanetOrbitProgress, planets }) => {
   const { speedFactor } = useSpeedControl();
@@ -22,7 +21,6 @@ const PlanetsUpdater: React.FC<PlanetsUpdaterProps> = ({ setPlanetOrbitProgress,
 
     setPlanetOrbitProgress((prevOrbitProgress) => {
       return planets.reduce((acc, planet) => {
-        // Apply the ORBIT_SPEED_FACTOR to each planet's orbit speed
         const orbitSpeedRadians = (((planet.orbitSpeed * ORBIT_SPEED_FACTOR) / 360) * (2 * Math.PI)) * speedFactor;
         acc[planet.name] = (prevOrbitProgress[planet.name] || 0) + orbitSpeedRadians * deltaTime;
         return acc;
