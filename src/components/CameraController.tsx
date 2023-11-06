@@ -24,14 +24,14 @@ const CameraController: React.FC = () => {
         if (controls) controls.enabled = false;
   
         lerpTarget.copy(planetPosition).add(new Vector3(1, 0.5, 0).multiplyScalar(selectedPlanet.radius * 3));
-        camera.position.lerp(lerpTarget, 0.02);
+        camera.position.lerp(lerpTarget, 0.01);
         camera.lookAt(planetPosition);
       }
     } else {
       const remotePosition = new Vector3(7, 4, 7);
   
       lerpTarget.copy(remotePosition);
-      camera.position.lerp(lerpTarget, 0.02);
+      camera.position.lerp(lerpTarget, 0.01);
       
       if (controls) controls.enabled = true;
       //camera.lookAt(0, 0, 0);
