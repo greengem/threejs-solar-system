@@ -4,15 +4,16 @@ import { Canvas } from '@react-three/fiber';
 import CameraController from './CameraController';
 import SceneBackground from './SceneBackground';
 import Sun from './celestial/Sun';
-import planetsData from '../Data/planetsData';
+import planetsData from '../data/planetsData';
 import Planet from './celestial/Planets';
 import PlanetMenu from './PlanetMenu';
 import PlanetsUpdater from './PlanetsUpdater';
+import SpeedControl from './SpeedControl';
 
 function SolarSystem() {
   
-  const [planetAngles, setPlanetAngles] = useState<{ [key: string]: number }>(
-    planetsData.reduce<{ [key: string]: number }>((acc, planet) => { 
+  const [planetOrbitProgress, setPlanetOrbitProgress] = useState<{ [key: string]: number }>(
+    planetsData.reduce<{ [key: string]: number }>((acc, planet) => {
       acc[planet.name] = 0;
       return acc;
     }, {})
@@ -42,12 +43,13 @@ function SolarSystem() {
             moons={planet.moons}
             wobble={planet.wobble}
             rings={planet.rings}
-            angle={planetAngles[planet.name]}
+            orbitProgress={planetOrbitProgress[planet.name]}
           />
         ))}
-        <PlanetsUpdater setPlanetAngles={setPlanetAngles} />
+        <PlanetsUpdater setPlanetOrbitProgress={setPlanetOrbitProgress} planets={planetsData} />
       </Canvas>
       <PlanetMenu planets={planetsData} />
+      <SpeedControl />
     </>
   );
 }
