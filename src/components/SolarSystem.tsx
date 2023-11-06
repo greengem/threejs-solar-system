@@ -11,7 +11,6 @@ import PlanetsUpdater from './PlanetsUpdater';
 import SpeedControl from './SpeedControl';
 
 function SolarSystem() {
-  
   const [planetOrbitProgress, setPlanetOrbitProgress] = useState<{ [key: string]: number }>(
     planetsData.reduce<{ [key: string]: number }>((acc, planet) => {
       acc[planet.name] = 0;
@@ -46,7 +45,7 @@ function SolarSystem() {
             orbitProgress={planetOrbitProgress[planet.name]}
           />
         ))}
-        <PlanetsUpdater setPlanetOrbitProgress={setPlanetOrbitProgress} planets={planetsData} />
+      <PlanetsUpdater setPlanetOrbitProgress={setPlanetOrbitProgress} planets={planetsData} />
       </Canvas>
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
