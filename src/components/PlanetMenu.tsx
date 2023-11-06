@@ -11,21 +11,21 @@ interface PlanetMenuProps {
 
 const PlanetMenu: React.FC<PlanetMenuProps> = ({ planets }) => {
   const [, setSelectedPlanet] = useSelectedPlanet();
-  const { setSpeedFactor } = useSpeedControl();
+  const { overrideSpeedFactor } = useSpeedControl();
 
   const handleSelect = (planetName: string) => {
     const selected = planets.find((planet) => planet.name === planetName);
     setSelectedPlanet(selected ?? null);
-    setSpeedFactor(0);
+    overrideSpeedFactor();
   };
 
   return (
-    <div className="absolute bottom-5 left-5 p-2 rounded-lg">
-      <div className='flex gap-2 flex-wrap'>
+    <div className="absolute bottom-5 left-5 right-5">
+      <div className='flex gap-2 justify-center'>
         {planets.map((planet) => (
           <Button 
             key={planet.name} 
-            variant='ghost' 
+            variant='flat' 
             color='secondary' 
             size='sm' 
             onClick={() => handleSelect(planet.name)}

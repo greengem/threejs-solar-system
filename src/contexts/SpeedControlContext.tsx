@@ -1,10 +1,10 @@
-// SpeedControlContext.tsx
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface SpeedControlContextType {
   speedFactor: number;
-  setSpeedFactor: React.Dispatch<React.SetStateAction<number>>;
+  setSpeedFactor: (value: number) => void;
+  overrideSpeedFactor: () => void;
+  restoreSpeedFactor: () => void;
 }
 
 const SpeedControlContext = createContext<SpeedControlContextType | undefined>(undefined);
@@ -22,10 +22,25 @@ interface SpeedControlProviderProps {
 }
 
 export const SpeedControlProvider: React.FC<SpeedControlProviderProps> = ({ children }) => {
-  const [speedFactor, setSpeedFactor] = useState(1);
+  const [speedFactor, setSpeedFactorState] = useState(1);
+  const [lastSpeedFactor, setLastSpeedFactor] = useState(1);
+
+  const setSpeedFactor = (value: number) => {
+    setLastSpeedFactor(speedFactor);
+    setSpeedFactorState(value);
+  };
+
+  const overrideSpeedFactor = () => {
+    setLastSpeedFactor(speedFactor);
+    setSpeedFactorState(0);
+  };
+
+  const restoreSpeedFactor = () => {
+    setSpeedFactorState(lastSpeedFactor);
+  };
 
   return (
-    <SpeedControlContext.Provider value={{ speedFactor, setSpeedFactor }}>
+    <SpeedControlContext.Provider value={{ speedFactor, setSpeedFactor, overrideSpeedFactor, restoreSpeedFactor }}>
       {children}
     </SpeedControlContext.Provider>
   );
