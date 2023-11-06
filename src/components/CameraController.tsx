@@ -3,27 +3,30 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { OrbitControls as DreiOrbitControls } from '@react-three/drei';
 import { useSelectedPlanet } from '../contexts/SelectedPlanetContext';
+import { usePlanetPositions } from '../contexts/PlanetPositionsContext';
 
 const CameraController: React.FC = () => {
-  const orbitControlsRef = useRef<any>(null); // FIX USE CORRECT TYPE
+  const orbitControlsRef = useRef<any>(null); //FIX ANY TYPE
   const { camera } = useThree();
   const [selectedPlanet] = useSelectedPlanet();
+  const { planetPositions } = usePlanetPositions();
 
   useFrame(() => {
     const controls = orbitControlsRef.current;
 
     if (selectedPlanet) {
-      const planetPosition = new Vector3(...selectedPlanet.position);
+      const currentPlanetPosition = planetPositions[selectedPlanet.name];
 
-      // Lock the controls when tracking a planet
-      if (controls) controls.enabled = false;
+      if (currentPlanetPosition) {
+        const planetPosition = new Vector3(...currentPlanetPosition);
 
-      // Smoothly move the camera to orbit around the selected planet
-      camera.position.lerp(planetPosition.clone().add(new Vector3(1, 0, 0).multiplyScalar(selectedPlanet.radius * 10)), 0.1);
-      camera.lookAt(planetPosition);
+        if (controls) controls.enabled = false;
+
+        camera.position.lerp(planetPosition.clone().add(new Vector3(1, 0, 0).multiplyScalar(selectedPlanet.radius * 3)), 0.1);
+        camera.lookAt(planetPosition);
+      }
 
     } else {
-      // Re-enable controls when no planet is selected
       if (controls) controls.enabled = true;
     }
 
