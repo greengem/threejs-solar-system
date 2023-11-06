@@ -5,14 +5,14 @@ import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
 import Ring from '../Ring';
 import { PlanetData } from '../../../types';
 
-type ExtendedPlanetData = PlanetData & { angle: number };
+type ExtendedPlanetData = PlanetData & { orbitProgress: number };
 
 const Planet: React.FC<ExtendedPlanetData> = ({
   texturePath,
   position,
   radius,
   wobble,
-  angle, // This is the new prop
+  orbitProgress,
 }) => {
 
   const texture = useLoader(TextureLoader, texturePath);
@@ -21,8 +21,9 @@ const Planet: React.FC<ExtendedPlanetData> = ({
   }, [radius]);
 
   const orbitRadius = position.x;
-  const x = Math.cos(angle) * orbitRadius;
-  const z = Math.sin(angle) * orbitRadius;
+
+  const x = Math.cos(orbitProgress) * orbitRadius;
+  const z = Math.sin(orbitProgress) * orbitRadius;
 
   return (
     <>
