@@ -53,7 +53,6 @@ function SolarSystem() {
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
       <PlanetDetail />
-      <p className='absolute top-5 left-5 text-white'>CHRIS WAITT - DEV PREVIEW</p>
     </>
   );
 }
