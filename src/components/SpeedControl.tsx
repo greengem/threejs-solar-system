@@ -6,18 +6,17 @@ const SpeedControl = () => {
   const { speedFactor, setSpeedFactor } = useSpeedControl();
 
   return (
-    <div className='absolute top-5 right-5'>
+    <div className='absolute top-5 right-5 w-64'>
         <Slider
-            size="lg"
-            label="Speed Control"
+            aria-label="Speed control"
             step={0.01}
             maxValue={5}
             minValue={0}
-            aria-label="Speed control"
             defaultValue={speedFactor}
+            value={speedFactor}
             onChange={(value) => setSpeedFactor(Number(value))}
-            className="w-[300px] text-gray-200"
             color='secondary'
+            size="lg"
         />
     </div>
   );
