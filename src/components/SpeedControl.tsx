@@ -1,27 +1,26 @@
 // SpeedControl.tsx
 import { useSpeedControl } from '../contexts/SpeedControlContext';
-import { useSelectedPlanet } from '../contexts/SelectedPlanetContext';
+import { useCameraContext } from '../contexts/CameraContext';
 import {Slider} from "@nextui-org/slider";
 
 const SpeedControl = () => {
-  const { speedFactor, setSpeedFactorImmediate } = useSpeedControl(); // Use the new function here
-  const [selectedPlanet] = useSelectedPlanet();
+  const { speedFactor, setSpeedFactor } = useSpeedControl();
+  const { cameraState } = useCameraContext();
 
   return (
     <div className='absolute top-5 right-5 w-64'>
-        <Slider
-            // Disable slider when we are in detail mode
-            isDisabled={selectedPlanet !== null}
-            aria-label="Speed control"
-            step={0.01}
-            maxValue={2}
-            minValue={0}
-            defaultValue={speedFactor}
-            value={speedFactor}
-            onChange={(value) => setSpeedFactorImmediate(Number(value))} // Update this line
-            color='secondary'
-            size="lg"
-        />
+      <Slider
+          isDisabled={cameraState !== 'FREE'}
+          aria-label="Speed control"
+          step={0.01}
+          maxValue={2}
+          minValue={0}
+          defaultValue={speedFactor}
+          value={speedFactor}
+          onChange={(value) => setSpeedFactor(Number(value))}
+          color='secondary'
+          size="lg"
+      />
     </div>
   );
 };
