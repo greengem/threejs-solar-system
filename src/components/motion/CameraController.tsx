@@ -2,9 +2,9 @@ import React, { useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import {  Vector3 } from 'three';
 import { OrbitControls as DreiOrbitControls } from '@react-three/drei';
-import { useSelectedPlanet } from '../contexts/SelectedPlanetContext';
-import { usePlanetPositions } from '../contexts/PlanetPositionsContext';
-import { useCameraContext } from '../contexts/CameraContext';
+import { useSelectedPlanet } from '../../contexts/SelectedPlanetContext';
+import { usePlanetPositions } from '../../contexts/PlanetPositionsContext';
+import { useCameraContext } from '../../contexts/CameraContext';
 
 const CameraController: React.FC = () => {
   const orbitControlsRef = useRef<any>(null); // FIX ANY TYPE 

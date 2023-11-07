@@ -1,6 +1,6 @@
 // SpeedControl.tsx
-import { useSpeedControl } from '../contexts/SpeedControlContext';
-import { useCameraContext } from '../contexts/CameraContext';
+import { useSpeedControl } from '../../contexts/SpeedControlContext';
+import { useCameraContext } from '../../contexts/CameraContext';
 import {Slider} from "@nextui-org/slider";
 
 const SpeedControl = () => {

@@ -11,12 +11,12 @@ const IntroText: React.FC<IntroTextProps> = ({ visible }) => {
   useEffect(() => {
     if (visible) {
       const fadeInTimeoutId = setTimeout(() => {
-        setIsVisible(true); // Set isVisible to true after a 1-second delay
-      }, 2000); // Wait for 1 second before fading in
+        setIsVisible(true);
+      }, 2000);
 
       const fadeOutTimeoutId = setTimeout(() => {
-        setIsVisible(false); // Hide the text after 3 seconds
-      }, 5000); // Wait for 4 seconds before fading out
+        setIsVisible(false);
+      }, 5000);
 
       return () => {
         clearTimeout(fadeInTimeoutId);
@@ -32,7 +32,7 @@ const IntroText: React.FC<IntroTextProps> = ({ visible }) => {
       initial={{ opacity: 0 }}
       animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 3 }} // 1 second duration for fading in and out
+      transition={{ duration: 3 }}
       className="
         absolute
         top-0 left-0 bottom-20 right-0

@@ -1,8 +1,8 @@
 // PlanetsUpdater.tsx
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { PlanetData } from '../../types';
-import { useSpeedControl } from '../contexts/SpeedControlContext';
+import { PlanetData } from '../../../types';
+import { useSpeedControl } from '../../contexts/SpeedControlContext';
 
 type PlanetsUpdaterProps = {
   setPlanetOrbitProgress: React.Dispatch<React.SetStateAction<{ [key: string]: number }>>;

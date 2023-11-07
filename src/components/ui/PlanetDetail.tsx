@@ -1,8 +1,8 @@
 // PlanetDetail.tsx
 import { Button, CardFooter, CardHeader } from '@nextui-org/react';
-import { useSelectedPlanet } from '../contexts/SelectedPlanetContext';
-import { useSpeedControl } from '../contexts/SpeedControlContext';
-import { useCameraContext } from '../contexts/CameraContext';
+import { useSelectedPlanet } from '../../contexts/SelectedPlanetContext';
+import { useSpeedControl } from '../../contexts/SpeedControlContext';
+import { useCameraContext } from '../../contexts/CameraContext';
 import { Card, CardBody } from '@nextui-org/react';
 
 const PlanetDetail: React.FC = () => {

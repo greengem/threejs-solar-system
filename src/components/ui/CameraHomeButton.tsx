@@ -1,5 +1,5 @@
 // CameraHomeButton.tsx
-import { useCameraContext } from '../contexts/CameraContext';
+import { useCameraContext } from '../../contexts/CameraContext';
 import { Button } from '@nextui-org/react';
 
 const CameraHomeButton = () => {

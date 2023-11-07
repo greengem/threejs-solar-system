@@ -1,9 +1,9 @@
 // PlanetMenu.tsx
 import React from 'react';
-import { useSpeedControl } from '../contexts/SpeedControlContext';
-import { useSelectedPlanet } from '../contexts/SelectedPlanetContext';
-import { useCameraContext } from '../contexts/CameraContext';
-import { PlanetData } from '../../types';
+import { useSpeedControl } from '../../contexts/SpeedControlContext';
+import { useSelectedPlanet } from '../../contexts/SelectedPlanetContext';
+import { useCameraContext } from '../../contexts/CameraContext';
+import { PlanetData } from '../../../types';
 import { Button } from '@nextui-org/react';
 
 interface PlanetMenuProps {

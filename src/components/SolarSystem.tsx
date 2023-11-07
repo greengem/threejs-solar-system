@@ -1,19 +1,19 @@
 // SolarSystem.tsx
 import { useState, useEffect } from 'react';
+import { PlanetData } from '../../types';
 import { Canvas } from '@react-three/fiber';
-import CameraController from './CameraController';
+import { useCameraContext } from '../contexts/CameraContext';
+import planetsData from '../lib/planetsData';
 import SceneBackground from './SceneBackground';
 import Sun from './celestial/Sun';
-import planetsData from '../lib/planetsData';
 import Planet from './celestial/Planets';
-import PlanetMenu from './PlanetMenu';
-import PlanetsUpdater from './PlanetsUpdater';
-import SpeedControl from './SpeedControl';
-import PlanetDetail from './PlanetDetail';
-import { PlanetData } from '../../types';
-import { useCameraContext } from '../contexts/CameraContext';
-import IntroText from './IntroText';
-import CameraHomeButton from './CameraHomeButton';
+import CameraController from './motion/CameraController';
+import PlanetsUpdater from './motion/PlanetsUpdater';
+import PlanetMenu from './ui/PlanetMenu';
+import SpeedControl from './ui/SpeedControl';
+import PlanetDetail from './ui/PlanetDetail';
+import CameraHomeButton from './ui/CameraHomeButton';
+import IntroText from './ui/IntroText';
 
 function SolarSystem() {
   const { cameraState } = useCameraContext();
