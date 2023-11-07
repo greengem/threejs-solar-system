@@ -1,9 +1,8 @@
 // PlanetDetail.tsx
-import { Button, CardFooter, CardHeader } from '@nextui-org/react';
+import { Button } from '@nextui-org/button';
 import { useSelectedPlanet } from '../../contexts/SelectedPlanetContext';
 import { useSpeedControl } from '../../contexts/SpeedControlContext';
 import { useCameraContext } from '../../contexts/CameraContext';
-import { Card, CardBody } from '@nextui-org/react';
 
 const PlanetDetail: React.FC = () => {
   const [selectedPlanet, setSelectedPlanet] = useSelectedPlanet();
@@ -19,15 +18,15 @@ const PlanetDetail: React.FC = () => {
   if (!selectedPlanet) return null;
 
   return (
-    <Card className='absolute top-20 bottom-20 right-5 w-[300px] bg-gray-900 opacity-90'>
-      <CardHeader className='text-lg font-semibold tracking-tight uppercase text-white px-5'>{selectedPlanet.name}</CardHeader>
-      <CardBody className='px-5 overflow-scroll text-gray-300 text-xs'>{selectedPlanet.description}</CardBody>
-      <CardFooter>
-        <Button color='secondary' onClick={handleExitDetailMode}>
+    <div className='absolute top-5 left-5 w-[400px]'>
+      <h1 className='mb-0 tracking-tight font-semibold text-2xl md:text-5xl lg:text-7xl xl:text-8xl text-white'>
+        {selectedPlanet.name}
+      </h1>
+      <p className='text-gray-300 mb-2'>{selectedPlanet.description}</p>
+        <Button color='danger' onClick={handleExitDetailMode}>
           Exit Detail View
         </Button>
-      </CardFooter>
-    </Card>
+    </div>
   );
 };
 
