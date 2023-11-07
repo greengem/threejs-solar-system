@@ -12,7 +12,7 @@ const CameraHomeButton = () => {
   const isDisabled = cameraState !== 'FREE';
 
   return (
-    <Button className='absolute left-5 top-20' disabled={isDisabled} onClick={moveToHome}>
+    <Button color='secondary' className='absolute right-5 top-20' disabled={isDisabled} onClick={moveToHome}>
       Home
     </Button>
   );
