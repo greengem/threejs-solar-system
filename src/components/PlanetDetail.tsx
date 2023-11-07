@@ -2,15 +2,18 @@
 import { Button, CardFooter, CardHeader } from '@nextui-org/react';
 import { useSelectedPlanet } from '../contexts/SelectedPlanetContext';
 import { useSpeedControl } from '../contexts/SpeedControlContext';
+import { useCameraContext } from '../contexts/CameraContext';
 import { Card, CardBody } from '@nextui-org/react';
 
 const PlanetDetail: React.FC = () => {
   const [selectedPlanet, setSelectedPlanet] = useSelectedPlanet();
   const { restoreSpeedFactor } = useSpeedControl();
+  const { setCameraState } = useCameraContext();
 
   const handleExitDetailMode = () => {
     setSelectedPlanet(null);
     restoreSpeedFactor();
+    setCameraState('MOVING_TO_HOME');
   };
 
   if (!selectedPlanet) return null;

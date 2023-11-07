@@ -16,7 +16,6 @@ const PlanetsUpdater: React.FC<PlanetsUpdaterProps> = ({ setPlanetOrbitProgress,
   const lastElapsedTimeRef = useRef(0);
 
   useFrame(({ clock }) => {
-    //console.log(speedFactor);
     const elapsedTime = clock.getElapsedTime();
     const deltaTime = elapsedTime - lastElapsedTimeRef.current;
     lastElapsedTimeRef.current = elapsedTime;
