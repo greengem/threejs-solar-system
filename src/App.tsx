@@ -3,7 +3,6 @@ import SolarSystem from './components/SolarSystem';
 import { SelectedPlanetProvider } from './contexts/SelectedPlanetContext';
 import { SpeedControlProvider } from './contexts/SpeedControlContext';
 import { PlanetPositionsProvider } from './contexts/PlanetPositionsContext';
-
 import {NextUIProvider} from "@nextui-org/react";
 
 function App() {

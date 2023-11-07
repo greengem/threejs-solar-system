@@ -1,5 +1,5 @@
 // SolarSystem.tsx
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import CameraController from './CameraController';
 import SceneBackground from './SceneBackground';
@@ -11,6 +11,7 @@ import PlanetsUpdater from './PlanetsUpdater';
 import SpeedControl from './SpeedControl';
 import PlanetDetail from './PlanetDetail';
 import { PlanetData } from '../../types';
+import LoadingScreen from './LoadingScreen';
 
 function SolarSystem() {
   const [planetOrbitProgress, setPlanetOrbitProgress] = useState<{ [key: string]: number }>(
@@ -22,6 +23,7 @@ function SolarSystem() {
 
   return (
     <>
+    <Suspense fallback={<LoadingScreen />}>
       <Canvas>
         <CameraController />
         <SceneBackground texturePath="/images/background/stars_8k.jpg" />
@@ -53,6 +55,7 @@ function SolarSystem() {
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
       <PlanetDetail />
+      </Suspense>
     </>
   );
 }
