@@ -26,7 +26,7 @@ const PlanetMenu: React.FC<PlanetMenuProps> = ({ planets }) => {
 
   return (
     <div className="absolute bottom-5 left-5 right-5">
-      <div className='flex gap-2 justify-center'>
+      <div className='flex flex-wrap gap-2 justify-center'>
         {planets.map((planet) => (
           <Button 
             isDisabled={isDisabled}
