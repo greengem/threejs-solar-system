@@ -1,23 +1,14 @@
 // App.tsx
 import SolarSystem from './components/SolarSystem';
-import { SelectedPlanetProvider } from './contexts/SelectedPlanetContext';
-import { SpeedControlProvider } from './contexts/SpeedControlContext';
-import { PlanetPositionsProvider } from './contexts/PlanetPositionsContext';
-import {NextUIProvider} from "@nextui-org/react";
+import Providers from './providers';
 
 function App() {
   return (
-    <NextUIProvider>
-      <SelectedPlanetProvider>
-        <SpeedControlProvider>
-          <PlanetPositionsProvider>
-            <div className='w-screen h-screen overflow-hidden'>
-              <SolarSystem />
-            </div>
-          </PlanetPositionsProvider>
-        </SpeedControlProvider>
-      </SelectedPlanetProvider>
-    </NextUIProvider>
+    <Providers>
+      <div className='w-screen h-screen overflow-hidden'>
+        <SolarSystem />
+      </div>
+    </Providers>
   );
 }
 
