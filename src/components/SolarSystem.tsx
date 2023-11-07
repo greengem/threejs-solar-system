@@ -13,6 +13,7 @@ import PlanetDetail from './PlanetDetail';
 import { PlanetData } from '../../types';
 import { useCameraContext } from '../contexts/CameraContext';
 import IntroText from './IntroText';
+import CameraHomeButton from './CameraHomeButton';
 
 function SolarSystem() {
   const { cameraState } = useCameraContext();
@@ -64,6 +65,7 @@ function SolarSystem() {
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
       <PlanetDetail />
+      <CameraHomeButton />
       <div className='absolute top-5 left-5 text-white'><pre>Camera {JSON.stringify({ cameraState }, null, 2)}</pre></div>
     </>
   );
