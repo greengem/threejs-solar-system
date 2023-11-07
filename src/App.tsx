@@ -1,6 +1,6 @@
 // App.tsx
 import SolarSystem from './components/SolarSystem';
-import Providers from './providers';
+import Providers from './Providers';
 
 function App() {
   return (
