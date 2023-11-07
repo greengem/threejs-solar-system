@@ -18,12 +18,23 @@ const PlanetDetail: React.FC = () => {
   if (!selectedPlanet) return null;
 
   return (
-    <div className='absolute top-5 left-5 w-[400px]'>
-      <h1 className='mb-0 tracking-tight font-semibold text-2xl md:text-5xl lg:text-7xl xl:text-8xl text-white'>
-        {selectedPlanet.name}
-      </h1>
-      <p className='text-gray-300 mb-2'>{selectedPlanet.description}</p>
-        <Button color='danger' onClick={handleExitDetailMode}>
+    <div className='absolute bottom-30 left-5 right-5 md:top-5 md:w-[400px]'>
+        <h1 className='
+          text-white
+          mb-5 
+          tracking-tight font-semibold 
+          text-5xl lg:text-7xl xl:text-8xl 
+        '>
+          {selectedPlanet.name}
+        </h1>
+        <p className='
+          text-white 
+          mb-5 ml-1
+          text-xs md:text-sm
+        '>
+          {selectedPlanet.description}
+        </p>
+        <Button size='sm' className='ml-1' color='secondary' onClick={handleExitDetailMode}>
           Exit Detail View
         </Button>
     </div>
