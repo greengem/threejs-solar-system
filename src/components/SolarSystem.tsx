@@ -66,7 +66,7 @@ function SolarSystem() {
       <SpeedControl />
       <PlanetDetail />
       <CameraHomeButton />
-      <div className='absolute top-5 left-5 text-white'><pre>Camera {JSON.stringify({ cameraState }, null, 2)}</pre></div>
+      <div className='hidden absolute top-5 left-5 text-white'><pre>Camera {JSON.stringify({ cameraState }, null, 2)}</pre></div>
     </>
   );
 }
