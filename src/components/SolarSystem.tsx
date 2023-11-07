@@ -26,7 +26,7 @@ function SolarSystem() {
   );
 
   useEffect(() => {
-    if (cameraState === 'FREE') {
+    if (cameraState !== 'INTRO_ANIMATION') {
       setShowIntroText(false);
     }
   }, [cameraState]);
@@ -66,7 +66,6 @@ function SolarSystem() {
       <SpeedControl />
       <PlanetDetail />
       <CameraHomeButton />
-      <div className='hidden absolute top-5 left-5 text-white'><pre>Camera {JSON.stringify({ cameraState }, null, 2)}</pre></div>
     </>
   );
 }
