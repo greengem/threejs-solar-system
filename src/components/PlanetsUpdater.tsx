@@ -1,3 +1,4 @@
+// PlanetsUpdater.tsx
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { PlanetData } from '../../types';
@@ -15,6 +16,7 @@ const PlanetsUpdater: React.FC<PlanetsUpdaterProps> = ({ setPlanetOrbitProgress,
   const lastElapsedTimeRef = useRef(0);
 
   useFrame(({ clock }) => {
+    //console.log(speedFactor);
     const elapsedTime = clock.getElapsedTime();
     const deltaTime = elapsedTime - lastElapsedTimeRef.current;
     lastElapsedTimeRef.current = elapsedTime;

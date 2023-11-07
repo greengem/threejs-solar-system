@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.3",
-    "@react-spring/three": "^9.7.3",
+    "@react-spring/web": "^9.7.3",
     "@react-three/drei": "^9.88.11",
     "@react-three/fiber": "^8.15.9",
     "@types/three": "^0.158.1",
