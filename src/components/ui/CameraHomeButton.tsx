@@ -3,6 +3,7 @@ import { useCameraContext } from '../../contexts/CameraContext';
 import { useSelectedPlanet } from '../../contexts/SelectedPlanetContext';
 import { useSpeedControl } from '../../contexts/SpeedControlContext';
 import { Button } from '@nextui-org/react';
+import { IconHome } from '@tabler/icons-react';
 
 const CameraHomeButton = () => {
   const { cameraState, setCameraState } = useCameraContext();
@@ -20,8 +21,8 @@ const CameraHomeButton = () => {
   const isButtonDisabled = cameraState === 'INTRO_ANIMATION';
 
   return (
-    <Button color='secondary' className='absolute right-5 top-20' isDisabled={isButtonDisabled} onClick={moveToHome}>
-      Home
+    <Button isIconOnly color='secondary' className='absolute right-5 top-20' isDisabled={isButtonDisabled} onClick={moveToHome}>
+      <IconHome />
     </Button>
   );
 };
