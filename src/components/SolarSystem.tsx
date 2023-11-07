@@ -1,5 +1,5 @@
 // SolarSystem.tsx
-import { Suspense, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import CameraController from './CameraController';
 import SceneBackground from './SceneBackground';
@@ -11,9 +11,12 @@ import PlanetsUpdater from './PlanetsUpdater';
 import SpeedControl from './SpeedControl';
 import PlanetDetail from './PlanetDetail';
 import { PlanetData } from '../../types';
-import LoadingScreen from './LoadingScreen';
+import { useCameraContext } from '../contexts/CameraContext';
+import IntroText from './IntroText';
 
 function SolarSystem() {
+  const { cameraState } = useCameraContext();
+  const [showIntroText, setShowIntroText] = useState(true);
   const [planetOrbitProgress, setPlanetOrbitProgress] = useState<{ [key: string]: number }>(
     planetsData.reduce<{ [key: string]: number }>((acc, planet: PlanetData) => {
       acc[planet.name] = 0;
@@ -21,9 +24,14 @@ function SolarSystem() {
     }, {})
   );
 
+  useEffect(() => {
+    if (cameraState === 'FREE') {
+      setShowIntroText(false);
+    }
+  }, [cameraState]);
+
   return (
     <>
-    <Suspense fallback={<LoadingScreen />}>
       <Canvas>
         <CameraController />
         <SceneBackground texturePath="/images/background/stars_8k.jpg" />
@@ -52,10 +60,11 @@ function SolarSystem() {
         ))}
       <PlanetsUpdater setPlanetOrbitProgress={setPlanetOrbitProgress} planets={planetsData} />
       </Canvas>
+      {showIntroText && <IntroText visible={showIntroText} />}
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
       <PlanetDetail />
-      </Suspense>
+      <div className='absolute top-5 left-5 text-white'><pre>Camera {JSON.stringify({ cameraState }, null, 2)}</pre></div>
     </>
   );
 }
