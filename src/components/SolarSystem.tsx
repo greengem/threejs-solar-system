@@ -14,10 +14,12 @@ import SpeedControl from './ui/SpeedControl';
 import PlanetDetail from './ui/PlanetDetail';
 import IntroText from './ui/IntroText';
 import ControlMenu from './ui/ControlMenu/ControlMenu';
+import SceneLighting from './SceneLighting';
 
 function SolarSystem() {
   const { cameraState } = useCameraContext();
   const [showIntroText, setShowIntroText] = useState(true);
+  const [showDetails, setShowDetails] = useState(true);
   const [planetOrbitProgress, setPlanetOrbitProgress] = useState<{ [key: string]: number }>(
     planetsData.reduce<{ [key: string]: number }>((acc, planet: PlanetData) => {
       acc[planet.name] = 0;
@@ -31,16 +33,17 @@ function SolarSystem() {
     }
   }, [cameraState]);
 
+  useEffect(() => {
+    setShowDetails(cameraState === 'DETAIL_VIEW');
+  }, [cameraState]);
+  
+
   return (
     <>
       <Canvas>
         <CameraController />
         <SceneBackground texturePath="/images/background/stars_8k.jpg" />
-        <ambientLight intensity={0.2} />
-        <directionalLight intensity={1} position={[2, 2, 2]} target-position={[0, 0, 0]} />
-        <pointLight position={[0, 0, 0]} intensity={1.5} decay={2} distance={10} />
-        <pointLight position={[10, 10, 10]} intensity={0.5} />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} />
+        <SceneLighting />
         <Sun position={[0, 0, 0]} radius={1} />
         {planetsData.map((planet) => (
           <Planet
@@ -64,7 +67,7 @@ function SolarSystem() {
       {showIntroText && <IntroText visible={showIntroText} />}
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
-      <PlanetDetail />
+      {showDetails && <PlanetDetail visible={showDetails} />}
       <ControlMenu />
       <p className='absolute top-20 right-5 text-red-500'>CAMERA STATE: {JSON.stringify(cameraState, null, 2)}</p>
     </>
