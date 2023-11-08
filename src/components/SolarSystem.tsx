@@ -66,6 +66,7 @@ function SolarSystem() {
       <SpeedControl />
       <PlanetDetail />
       <ControlMenu />
+      <p className='absolute top-20 right-5 text-red-500'>CAMERA STATE: {JSON.stringify(cameraState, null, 2)}</p>
     </>
   );
 }
