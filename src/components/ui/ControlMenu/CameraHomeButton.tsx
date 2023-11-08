@@ -1,7 +1,7 @@
 // CameraHomeButton.tsx
-import { useCameraContext } from '../../contexts/CameraContext';
-import { useSelectedPlanet } from '../../contexts/SelectedPlanetContext';
-import { useSpeedControl } from '../../contexts/SpeedControlContext';
+import { useCameraContext } from '../../../contexts/CameraContext';
+import { useSelectedPlanet } from '../../../contexts/SelectedPlanetContext';
+import { useSpeedControl } from '../../../contexts/SpeedControlContext';
 import { Button } from '@nextui-org/react';
 import { IconHome } from '@tabler/icons-react';
 
@@ -21,7 +21,13 @@ const CameraHomeButton = () => {
   const isButtonDisabled = cameraState === 'INTRO_ANIMATION';
 
   return (
-    <Button isIconOnly color='secondary' className='absolute right-5 top-20' isDisabled={isButtonDisabled} onClick={moveToHome}>
+    <Button 
+      isIconOnly 
+      color='secondary' 
+      variant='flat'
+      isDisabled={isButtonDisabled} 
+      onClick={moveToHome}
+    >
       <IconHome />
     </Button>
   );
