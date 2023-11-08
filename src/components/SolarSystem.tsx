@@ -12,13 +12,11 @@ import PlanetsUpdater from './motion/PlanetsUpdater';
 import PlanetMenu from './ui/PlanetMenu';
 import SpeedControl from './ui/SpeedControl';
 import PlanetDetail from './ui/PlanetDetail';
-import IntroText from './ui/IntroText';
 import ControlMenu from './ui/ControlMenu/ControlMenu';
 import SceneLighting from './SceneLighting';
 
 function SolarSystem() {
   const { cameraState } = useCameraContext();
-  const [showIntroText, setShowIntroText] = useState(true);
   const [showDetails, setShowDetails] = useState(true);
   const [planetOrbitProgress, setPlanetOrbitProgress] = useState<{ [key: string]: number }>(
     planetsData.reduce<{ [key: string]: number }>((acc, planet: PlanetData) => {
@@ -28,15 +26,8 @@ function SolarSystem() {
   );
 
   useEffect(() => {
-    if (cameraState !== 'INTRO_ANIMATION') {
-      setShowIntroText(false);
-    }
-  }, [cameraState]);
-
-  useEffect(() => {
     setShowDetails(cameraState === 'DETAIL_VIEW');
   }, [cameraState]);
-  
 
   return (
     <>
@@ -64,12 +55,13 @@ function SolarSystem() {
         ))}
       <PlanetsUpdater setPlanetOrbitProgress={setPlanetOrbitProgress} planets={planetsData} />
       </Canvas>
-      {showIntroText && <IntroText visible={showIntroText} />}
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
       {showDetails && <PlanetDetail visible={showDetails} />}
       <ControlMenu />
-      <p className='absolute top-20 right-5 text-red-500'>CAMERA STATE: {JSON.stringify(cameraState, null, 2)}</p>
+      <p className='absolute top-20 right-5 bg-gray-900 py-1 px-3'>
+        CAMERA STATE DEBUG: <span className='text-danger'>{JSON.stringify(cameraState, null, 2)}</span>
+      </p>
     </>
   );
 }
