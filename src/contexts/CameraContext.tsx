@@ -1,7 +1,7 @@
 // CameraContext.tsx
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type CameraState = 'FREE' | 'INTRO_ANIMATION' | 'ZOOMED_IN' | 'MOVING_TO_HOME';
+type CameraState = 'FREE' | 'INTRO_ANIMATION' | 'DETAIL_VIEW' | 'ZOOMING_IN' | 'MOVING_TO_HOME';
 
 interface CameraContextType {
   cameraState: CameraState;
