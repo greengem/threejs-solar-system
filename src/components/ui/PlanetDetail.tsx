@@ -1,25 +1,20 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import {Tabs, Tab} from "@nextui-org/tabs";
 import { useSelectedPlanet } from '../../contexts/SelectedPlanetContext';
-import { Card, CardBody } from '@nextui-org/react';
 
 const PlanetDetail: React.FC<{ visible: boolean }> = ({ visible }) => {
   const [selectedPlanet] = useSelectedPlanet();
 
-  // Define your animation variants
   const variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 10 }
   };
   
-  
-
   return (
     <AnimatePresence>
       {visible && selectedPlanet && (
         <motion.div
-          className='absolute left-5 right-5 top-30 w-[400px]'
+          className='absolute left-5 right-5 top-20 mt-4 w-[400px]'
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -31,19 +26,19 @@ const PlanetDetail: React.FC<{ visible: boolean }> = ({ visible }) => {
             text-white
             mb-5 
             tracking-tight font-semibold 
-            text-5xl lg:text-7xl xl:text-8xl 
+            text-7xl lg:text-8xl xl:text-8xl 
+            opacity-90
           '>
             {selectedPlanet.name}
           </h1>
-          <div className='hidden md:block'>
-            <Tabs aria-label="Planet detail tabs" color="secondary">
-              <Tab key="details" title="Details">
-                <Card><CardBody className='text-sm'>{selectedPlanet.description}</CardBody></Card>
-              </Tab>
-              <Tab key="stats" title="Stats">To do</Tab>
-              <Tab key="photos" title="Photos">To do</Tab>
-            </Tabs>
-          </div>
+          <p className='text-secondary'>Debug Info...</p>
+          <ul className='text-sm'>
+            <li>Position: {selectedPlanet.position}</li>
+            <li>Radius: {selectedPlanet.radius}</li>
+            <li>Rotation Speed: {selectedPlanet.rotationSpeed}</li>
+            <li>Tilt: {selectedPlanet.tilt}</li>
+            <li>Orbit Speed: {selectedPlanet.orbitSpeed}</li>
+          </ul>
         </motion.div>
       )}
     </AnimatePresence>
