@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import {Tabs, Tab} from "@nextui-org/tabs";
 import { useSelectedPlanet } from '../../contexts/SelectedPlanetContext';
+import { Card, CardBody } from '@nextui-org/react';
 
 const PlanetDetail: React.FC<{ visible: boolean }> = ({ visible }) => {
   const [selectedPlanet] = useSelectedPlanet();
@@ -34,13 +35,15 @@ const PlanetDetail: React.FC<{ visible: boolean }> = ({ visible }) => {
           '>
             {selectedPlanet.name}
           </h1>
-          <Tabs aria-label="Planet detail tabs" color="secondary">
-            <Tab key="details" title="Details">
-              <p className="text-sm">{selectedPlanet.description}</p>
-            </Tab>
-            <Tab key="stats" title="Stats"></Tab>
-            <Tab key="photos" title="Photos"></Tab>
-          </Tabs>
+          <div className='hidden md:block'>
+            <Tabs aria-label="Planet detail tabs" color="secondary">
+              <Tab key="details" title="Details">
+                <Card><CardBody className='text-sm'>{selectedPlanet.description}</CardBody></Card>
+              </Tab>
+              <Tab key="stats" title="Stats">To do</Tab>
+              <Tab key="photos" title="Photos">To do</Tab>
+            </Tabs>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

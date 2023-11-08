@@ -8,7 +8,7 @@ const SpeedControl = () => {
   const { cameraState } = useCameraContext();
 
   return (
-    <div className='absolute top-8 right-5 w-[300px]'>
+    <div className='absolute top-8 right-5 w-[150px] md:w-[300px]'>
       <Slider
           isDisabled={cameraState === 'ZOOMING_IN' || cameraState === 'INTRO_ANIMATION'}
           aria-label="Speed control"
