@@ -12,8 +12,8 @@ import PlanetsUpdater from './motion/PlanetsUpdater';
 import PlanetMenu from './ui/PlanetMenu';
 import SpeedControl from './ui/SpeedControl';
 import PlanetDetail from './ui/PlanetDetail';
-import CameraHomeButton from './ui/CameraHomeButton';
 import IntroText from './ui/IntroText';
+import ControlMenu from './ui/ControlMenu/ControlMenu';
 
 function SolarSystem() {
   const { cameraState } = useCameraContext();
@@ -65,7 +65,7 @@ function SolarSystem() {
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
       <PlanetDetail />
-      <CameraHomeButton />
+      <ControlMenu />
     </>
   );
 }
