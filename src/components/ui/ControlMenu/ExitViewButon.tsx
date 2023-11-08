@@ -19,8 +19,8 @@ const ExitViewButton: React.FC = () => {
   if (!selectedPlanet) return null;
 
   return (
-    <Button isIconOnly color='danger' variant='flat' onClick={handleExitDetailMode}>
-      <IconX />
+    <Button color='danger' variant='flat' onClick={handleExitDetailMode}>
+      <IconX />Exit Detail View
     </Button>
   );
 };
