@@ -23,6 +23,7 @@ const CameraController: React.FC = () => {
   const lookAtSun = useRef(new Vector3(0, 0, 0)).current;
   const lerpFactor = 0.05;
   const cameraPositionEpsilon = 0.1;
+  const detailViewDistance = useRef(5).current;
 
   useFrame(() => {
     const controls = orbitControlsRef.current;
@@ -30,19 +31,40 @@ const CameraController: React.FC = () => {
     if (controls) {
       switch (cameraState) {
 
+        // Static Cases:
         case 'FREE':
           controls.enabled = true;
+          controls.target.set(lookAtSun.x, lookAtSun.y, lookAtSun.z);
+          controls.maxDistance = Infinity;
+          controls.update();
           break;
+        
+        case 'DETAIL_VIEW':
+          if (selectedPlanet) {
+            controls.enabled = true;
+            const currentPlanetPosition = planetPositions[selectedPlanet.name];
+            if (currentPlanetPosition) {
 
-        case 'MOVING_TO_HOME':
-          controls.enabled = false;
-          camera.position.lerp(homePosition, lerpFactor);
-          camera.lookAt(lookAtSun);
-          if (camera.position.distanceTo(homePosition) < cameraPositionEpsilon) {
-            camera.position.copy(homePosition);
-            setCameraState('FREE');
+              controls.target.set(...currentPlanetPosition);
+              controls.maxDistance = selectedPlanet.radius * detailViewDistance;
+              controls.update();
+            }
           }
           break;
+
+        // Motion Cases:
+      case 'MOVING_TO_HOME':
+        controls.enabled = false;
+        camera.position.lerp(homePosition, lerpFactor);
+        camera.lookAt(lookAtSun);
+        if (camera.position.distanceTo(homePosition) < cameraPositionEpsilon) {
+          camera.position.copy(homePosition);
+          controls.target.set(lookAtSun.x, lookAtSun.y, lookAtSun.z);
+          controls.maxDistance = Infinity;
+          controls.update();
+          setCameraState('FREE');
+        }
+        break;
 
         case 'ZOOMING_IN':
           if (selectedPlanet) {
@@ -60,9 +82,9 @@ const CameraController: React.FC = () => {
             }
           }
           break;
-          
+
       }
-      camera.updateProjectionMatrix();
+      //camera.updateProjectionMatrix();
     }
   });
 
