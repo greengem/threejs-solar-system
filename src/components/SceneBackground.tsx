@@ -1,45 +1,23 @@
-import React, { useEffect, useRef } from 'react';
-import { useLoader, useThree, useFrame } from '@react-three/fiber';
-import { TextureLoader, EquirectangularReflectionMapping, Vector3 } from 'three';
-import { useCameraContext } from '../contexts/CameraContext';
+import React, { useEffect } from 'react';
+import { useLoader, useThree } from '@react-three/fiber';
+import { TextureLoader, EquirectangularReflectionMapping } from 'three';
 
 type SceneBackgroundProps = {
   texturePath: string;
 };
 
 const SceneBackground: React.FC<SceneBackgroundProps> = ({ texturePath }) => {
-  const { scene, camera } = useThree();
-  const { setCameraState } = useCameraContext();
-  const introAnimationCompleted = useRef(false);
-
-  useEffect(() => {
-    camera.position.set(-200, 0, 200);
-    camera.lookAt(0, 0, 0);
-  }, [camera]);
-
+  const { scene } = useThree();
   const texture = useLoader(TextureLoader, texturePath);
+  texture.mapping = EquirectangularReflectionMapping;
 
   useEffect(() => {
     const prevBackground = scene.background;
-    texture.mapping = EquirectangularReflectionMapping;
     scene.background = texture;
-
     return () => {
       scene.background = prevBackground;
     };
   }, [texture, scene]);
-
-  useFrame(() => {
-    if (!introAnimationCompleted.current) {
-      const targetPosition = new Vector3(7, 6, 7);
-      camera.position.lerp(targetPosition, 0.03);
-      if (camera.position.distanceTo(targetPosition) < 0.01) {
-        introAnimationCompleted.current = true;
-        camera.position.copy(targetPosition);
-        setCameraState('FREE');
-      }
-    }
-  });
 
   return null;
 };
