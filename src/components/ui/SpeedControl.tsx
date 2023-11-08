@@ -8,16 +8,17 @@ const SpeedControl = () => {
   const { cameraState } = useCameraContext();
 
   return (
-    <div className='absolute top-8 right-5 w-[150px] md:w-[300px]'>
+    <div className='absolute h-[300px] top-5 right-5'>
       <Slider
-          isDisabled={cameraState === 'ZOOMING_IN' || cameraState === 'INTRO_ANIMATION'}
+          isDisabled={cameraState === 'ZOOMING_IN' || cameraState === 'INTRO_ANIMATION' || cameraState === 'DETAIL_VIEW'}
           aria-label="Speed control"
           step={0.01}
-          maxValue={2}
+          maxValue={5}
           minValue={0}
           defaultValue={speedFactor}
           value={speedFactor}
           onChange={(value) => setSpeedFactor(Number(value))}
+          orientation="vertical"
           color='secondary'
           size="lg"
       />
