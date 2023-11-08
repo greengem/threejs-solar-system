@@ -19,7 +19,7 @@ const PlanetMenu: React.FC<PlanetMenuProps> = ({ planets }) => {
     const selected = planets.find((planet) => planet.name === planetName);
     setSelectedPlanet(selected ?? null);
     overrideSpeedFactor();
-    setCameraState('ZOOMED_IN');
+    setCameraState('ZOOMING_IN');
   };
 
   const isDisabled = cameraState === 'INTRO_ANIMATION';

@@ -10,7 +10,7 @@ const SpeedControl = () => {
   return (
     <div className='absolute top-8 right-5 w-[300px]'>
       <Slider
-          isDisabled={cameraState === 'ZOOMED_IN' || cameraState === 'INTRO_ANIMATION'}
+          isDisabled={cameraState === 'ZOOMING_IN' || cameraState === 'INTRO_ANIMATION'}
           aria-label="Speed control"
           step={0.01}
           maxValue={2}
