@@ -31,7 +31,7 @@ function SolarSystem() {
 
   return (
     <>
-      <Canvas>
+      <Canvas camera={{ position: [-200, 0, 200] }}>
         <CameraController />
         <SceneBackground texturePath="/images/background/stars_8k.jpg" />
         <SceneLighting />
@@ -40,7 +40,6 @@ function SolarSystem() {
           <Planet
             key={planet.name}
             name={planet.name}
-            description={planet.description}
             texturePath={planet.texturePath}
             position={planet.position}
             radius={planet.radius}
@@ -59,9 +58,9 @@ function SolarSystem() {
       <SpeedControl />
       {showDetails && <PlanetDetail visible={showDetails} />}
       <ControlMenu />
-      <p className='absolute top-20 right-5 bg-gray-900 py-1 px-3 text-xs rounded-xl'>
-        CAMERA STATE DEBUG: <span className='text-danger'>{JSON.stringify(cameraState, null, 2)}</span>
-      </p>
+      <div className='hidden absolute top-20 right-5 bg-gray-900 py-1 px-3 text-xs rounded-xl'>
+        <p>CAMERA STATE DEBUG: <span className='text-danger'>{JSON.stringify(cameraState, null, 2)}</span></p>
+      </div>
     </>
   );
 }
