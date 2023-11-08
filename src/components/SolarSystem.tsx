@@ -59,7 +59,7 @@ function SolarSystem() {
       <SpeedControl />
       {showDetails && <PlanetDetail visible={showDetails} />}
       <ControlMenu />
-      <p className='absolute top-20 right-5 bg-gray-900 py-1 px-3'>
+      <p className='absolute top-20 right-5 bg-gray-900 py-1 px-3 text-xs rounded-xl'>
         CAMERA STATE DEBUG: <span className='text-danger'>{JSON.stringify(cameraState, null, 2)}</span>
       </p>
     </>
