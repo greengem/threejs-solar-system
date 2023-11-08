@@ -23,7 +23,8 @@ const CameraController: React.FC = () => {
   const lookAtSun = useRef(new Vector3(0, 0, 0)).current;
   const lerpFactor = 0.05;
   const cameraPositionEpsilon = 0.1;
-  const detailViewDistance = useRef(5).current;
+  const detailViewMinDistance = useRef(2).current;
+  const detailViewMaxDistance = useRef(4).current;
 
   useFrame(() => {
     const controls = orbitControlsRef.current;
@@ -46,7 +47,9 @@ const CameraController: React.FC = () => {
             if (currentPlanetPosition) {
 
               controls.target.set(...currentPlanetPosition);
-              controls.maxDistance = selectedPlanet.radius * detailViewDistance;
+
+              controls.minDistance = selectedPlanet.radius * detailViewMinDistance;
+              controls.maxDistance = selectedPlanet.radius * detailViewMaxDistance;
               controls.update();
             }
           }
@@ -72,7 +75,7 @@ const CameraController: React.FC = () => {
             if (currentPlanetPosition) {
               controls.enabled = false;
               const planetPosition = new Vector3(...currentPlanetPosition);
-              const targetCameraPosition = planetPosition.clone().add(new Vector3(1, 0.5, 0).multiplyScalar(selectedPlanet.radius * 3));
+              const targetCameraPosition = planetPosition.clone().add(new Vector3(0.7, 0.1, 0).multiplyScalar(selectedPlanet.radius * 3));
               camera.position.lerp(targetCameraPosition, lerpFactor);
               camera.lookAt(planetPosition);
 
