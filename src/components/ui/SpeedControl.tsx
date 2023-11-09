@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useSpeedControl } from '../../contexts/SpeedControlContext';
 import { useCameraContext } from '../../contexts/CameraContext';

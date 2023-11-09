@@ -1,10 +1,11 @@
-import { useMemo, useEffect } from 'react';
+import { useMemo, useEffect, useRef } from 'react';
 import { TextureLoader } from 'three';
-import { useLoader } from '@react-three/fiber';
+import { useLoader, useFrame } from '@react-three/fiber';
 import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
 import Ring from './Ring';
 import { PlanetData } from '../../../types';
 import { usePlanetPositions } from '../../contexts/PlanetPositionsContext';
+import { Mesh } from 'three';
 
 type ExtendedPlanetData = PlanetData & { orbitProgress: number };
 
@@ -15,6 +16,8 @@ const Planet: React.FC<ExtendedPlanetData> = ({
   radius,
   wobble,
   orbitProgress,
+  tilt,
+  rotationSpeed,
 }) => {
   const { setPlanetPosition } = usePlanetPositions();
   const texture = useLoader(TextureLoader, texturePath);
@@ -22,6 +25,14 @@ const Planet: React.FC<ExtendedPlanetData> = ({
   const orbitRadius = position.x;
   const x = Math.cos(orbitProgress) * orbitRadius;
   const z = Math.sin(orbitProgress) * orbitRadius;
+  const ref = useRef<Mesh>(null);
+
+  useFrame(() => {
+    if (ref.current) {
+      ref.current.rotation.y += rotationSpeed / 100;
+      ref.current.rotation.x = tilt;
+    }
+  });
 
   useEffect(() => {
     setPlanetPosition(name, [x, 0, z]);
@@ -29,7 +40,7 @@ const Planet: React.FC<ExtendedPlanetData> = ({
 
   return (
     <>
-      <mesh position={[x, 0, z]}>
+      <mesh position={[x, 0, z]} rotation={[tilt, 0, 0]}>
         <Sphere args={sphereArgs}>
           {wobble ? (
             <MeshWobbleMaterial map={texture} factor={0.1} speed={0.5} />
