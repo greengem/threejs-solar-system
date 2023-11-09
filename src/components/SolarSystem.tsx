@@ -46,6 +46,7 @@ function SolarSystem() {
             wobble={planet.wobble}
             rings={planet.rings}
             orbitProgress={planetOrbitProgress[planet.name]}
+            displayStats={planet.displayStats}
           />
         ))}
       <PlanetsUpdater setPlanetOrbitProgress={setPlanetOrbitProgress} planets={planetsData} />
