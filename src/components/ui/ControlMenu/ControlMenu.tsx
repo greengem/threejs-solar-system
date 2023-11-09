@@ -1,6 +1,7 @@
 import CameraHomeButton from "./CameraHomeButton"
 import InfoButton from "./InfoButton"
 import ExitViewButon from "./ExitViewButon"
+import HelpButton from "./HelpButton"
 
 const ControlMenu = () => {
     return (
@@ -15,6 +16,7 @@ const ControlMenu = () => {
             <div className="flex gap-x-2">
                 <CameraHomeButton />
                 <InfoButton />
+                <HelpButton />
                 <ExitViewButon />
             </div>
         </div>
