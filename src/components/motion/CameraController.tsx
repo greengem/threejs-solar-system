@@ -87,7 +87,7 @@ const CameraController: React.FC = () => {
             if (currentPlanetPosition) {
               controls.enabled = false;
               const planetPosition = new Vector3(...currentPlanetPosition);
-              const targetCameraPosition = planetPosition.clone().add(new Vector3(0.7, 0, 0).multiplyScalar(selectedPlanet.radius * 3));
+              const targetCameraPosition = planetPosition.clone().add(new Vector3(1, 0, 0).multiplyScalar(selectedPlanet.radius * 3));
               camera.position.lerp(targetCameraPosition, lerpFactor);
               camera.lookAt(planetPosition);
 
