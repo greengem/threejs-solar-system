@@ -2,7 +2,7 @@ import { useMemo, useEffect, useRef } from 'react';
 import { TextureLoader } from 'three';
 import { useLoader, useFrame } from '@react-three/fiber';
 import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
-import Ring from './Ring';
+import Ring from './GuideRing';
 import { PlanetData } from '../../../types';
 import { usePlanetPositions } from '../../contexts/PlanetPositionsContext';
 import { Mesh } from 'three';

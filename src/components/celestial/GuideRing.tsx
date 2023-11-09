@@ -6,7 +6,7 @@ interface RingProps {
   radius: number;
 }
 
-const Ring: React.FC<RingProps> = ({ radius }) => {
+const GuideRing: React.FC<RingProps> = ({ radius }) => {
   const { cameraState } = useCameraContext();
 
   const targetOpacity = (() => {
@@ -42,4 +42,4 @@ return (
 );
 };
 
-export default Ring;
+export default GuideRing;
