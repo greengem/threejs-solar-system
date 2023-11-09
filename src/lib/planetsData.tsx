@@ -4,6 +4,7 @@ import { Vector3 } from 'three';
 
 const planetsData: PlanetData[] = [
   {
+    id: 1,
     name: "Mercury",
     texturePath: "/images/bodies/mercury_2k.jpg",
     position: new Vector3(1.2, 0, 0),
@@ -14,6 +15,7 @@ const planetsData: PlanetData[] = [
     moons: [],
   },
   {
+    id: 2,
     name: "Venus",
     texturePath: "/images/bodies/venus_surface_2k.jpg",
     position: new Vector3(1.6, 0, 0),
@@ -24,6 +26,7 @@ const planetsData: PlanetData[] = [
     moons: [],
   },
   {
+    id: 3,
     name: "Earth",
     texturePath: "/images/bodies/earth_2k.jpg",
     position: new Vector3(2, 0, 0),
@@ -35,6 +38,7 @@ const planetsData: PlanetData[] = [
     moons: [],
   },
   {
+    id: 4,
     name: "Mars",
     texturePath: "/images/bodies/mars_2k.jpg",
     position: new Vector3(2.8, 0, 0),
@@ -45,6 +49,7 @@ const planetsData: PlanetData[] = [
     moons: [],
   },
   {
+    id: 5,
     name: "Jupiter",
     texturePath: "/images/bodies/jupiter_2k.jpg",
     position: new Vector3(4.2, 0, 0),
@@ -55,6 +60,7 @@ const planetsData: PlanetData[] = [
     moons: [],
   },
   {
+    id: 6,
     name: "Saturn",
     texturePath: "/images/bodies/saturn_2k.jpg",
     position: new Vector3(5.2, 0, 0),
@@ -69,6 +75,7 @@ const planetsData: PlanetData[] = [
     moons: [],
   },
   {
+    id: 7,
     name: "Uranus",
     texturePath: "/images/bodies/uranus_2k.jpg",
     position: new Vector3(6.2, 0, 0),
@@ -79,6 +86,7 @@ const planetsData: PlanetData[] = [
     moons: [],
   },
   {
+    id: 8,
     name: "Neptune",
     texturePath: "/images/bodies/neptune_2k.jpg",
     position: new Vector3(7.2, 0, 0),
