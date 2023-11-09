@@ -1,16 +1,37 @@
-// SpeedControl.tsx
+import React, { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import { useSpeedControl } from '../../contexts/SpeedControlContext';
 import { useCameraContext } from '../../contexts/CameraContext';
-import {Slider} from "@nextui-org/slider";
+import { Slider } from "@nextui-org/slider";
 
 const SpeedControl = () => {
+  const controls = useAnimation();
   const { speedFactor, setSpeedFactor } = useSpeedControl();
   const { cameraState } = useCameraContext();
 
+  useEffect(() => {
+    if (cameraState === 'FREE') {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [cameraState, controls]);
+
+  const speedControlVariants = {
+    hidden: { x: '150%', opacity: 1 },
+    visible: { x: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } }
+  };
+
   return (
-    <div className='absolute h-[300px] top-5 right-5'>
+    <motion.div
+      className='fixed top-5 right-5'
+      variants={speedControlVariants}
+      initial="hidden"
+      animate={controls}
+      style={{ height: 300 }} // Inline style for height to ensure it's applied
+    >
       <Slider
-          isDisabled={cameraState === 'ZOOMING_IN' || cameraState === 'INTRO_ANIMATION' || cameraState === 'DETAIL_VIEW'}
+          isDisabled={cameraState === 'ZOOMING_IN' || cameraState === 'DETAIL_VIEW'}
           aria-label="Speed control"
           step={0.01}
           maxValue={5}
@@ -22,7 +43,7 @@ const SpeedControl = () => {
           color='secondary'
           size="lg"
       />
-    </div>
+    </motion.div>
   );
 };
 
