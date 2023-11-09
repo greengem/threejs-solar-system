@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useRef } from 'react';
 import { TextureLoader } from 'three';
 import { useLoader, useFrame } from '@react-three/fiber';
-import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
+import { Sphere } from '@react-three/drei';
 import Ring from './GuideRing';
 import { PlanetData } from '../../../types';
 import { usePlanetPositions } from '../../contexts/PlanetPositionsContext';
@@ -14,7 +14,6 @@ const Planet: React.FC<ExtendedPlanetData> = ({
   texturePath,
   position,
   radius,
-  wobble,
   orbitProgress,
   tilt,
   rotationSpeed,
@@ -42,11 +41,7 @@ const Planet: React.FC<ExtendedPlanetData> = ({
     <>
       <mesh position={[x, 0, z]} rotation={[tilt, 0, 0]}>
         <Sphere args={sphereArgs}>
-          {wobble ? (
-            <MeshWobbleMaterial map={texture} factor={0.1} speed={0.5} />
-          ) : (
-            <meshStandardMaterial map={texture} />
-          )}
+          <meshStandardMaterial map={texture} />
         </Sphere>
       </mesh>
       <Ring radius={orbitRadius} />
