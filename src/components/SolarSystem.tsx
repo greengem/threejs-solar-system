@@ -14,9 +14,9 @@ import SpeedControl from './ui/SpeedControl';
 import PlanetDetail from './ui/PlanetDetail';
 import ControlMenu from './ui/ControlMenu/ControlMenu';
 import SceneLighting from './SceneLighting';
+import IntroText from './ui/IntroText';
 
 function SolarSystem() {
-  
   const [planetOrbitProgress, setPlanetOrbitProgress] = useState<{ [key: string]: number }>(
     planetsData.reduce<{ [key: string]: number }>((acc, planet: PlanetData) => {
       acc[planet.name] = 0;
@@ -57,6 +57,7 @@ function SolarSystem() {
         <PlanetDetail />
       </AnimatePresence>
       <ControlMenu />
+      <IntroText />
     </>
   );
 }

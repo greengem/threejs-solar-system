@@ -1,49 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-interface IntroTextProps {
-  visible: boolean;
-}
-
-const IntroText: React.FC<IntroTextProps> = ({ visible }) => {
+const IntroText: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [display, setDisplay] = useState(true); // New state to control display
 
   useEffect(() => {
-    if (visible) {
-      const fadeInTimeoutId = setTimeout(() => {
-        setIsVisible(true);
-      }, 2000);
+    // Set a timeout to fade in the text
+    const fadeInTimeoutId = setTimeout(() => {
+      setIsVisible(true);
+    }, 4000); // Fade in after 4 seconds
 
-      const fadeOutTimeoutId = setTimeout(() => {
-        setIsVisible(false);
-      }, 5000);
-
-      return () => {
-        clearTimeout(fadeInTimeoutId);
-        clearTimeout(fadeOutTimeoutId);
-      };
-    } else {
+    // Set another timeout to fade out the text after a certain time
+    const fadeOutTimeoutId = setTimeout(() => {
       setIsVisible(false);
-    }
-  }, [visible]);
+    }, 14000); // Fade out after 10 seconds (total 14 seconds from the initial render)
+
+    // Set a timeout to hide the text after the fade out
+    const hideTimeoutId = setTimeout(() => {
+      setDisplay(false); // Hide the text by not rendering the component
+    }, 14000); // Hide after 1 second of fade out animation
+
+    return () => {
+      // Clear timeouts if the component unmounts
+      clearTimeout(fadeInTimeoutId);
+      clearTimeout(fadeOutTimeoutId);
+      clearTimeout(hideTimeoutId);
+    };
+  }, []);
+
+  if (!display) {
+    return null; // Don't render the component if display is false
+  }
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 3 }}
+      animate={{ opacity: isVisible ? 1 : 0 }}
+      transition={{ duration: 1 }} // Duration for the fade in/out transition
       className="
         absolute
-        top-0 left-0 bottom-20 right-0
+        top-0 left-0 bottom-0 right-0
         flex
         flex-col
         justify-center
         items-center
+        opacity-95
       "
     >
-      <h1 className='tracking-tight font-semibold text-2xl md:text-5xl lg:text-7xl xl:text-8xl'><span className='text-white'>Welcome to the </span><span className='from-[#FF1CF7] to-[#b249f8] bg-clip-text text-transparent bg-gradient-to-b'>Solar System</span></h1>
-      <p className='text-xs md:text-sm text-gray-300'>Developer Preview, this site is under construction and full of bugs!</p>
+      <h1 className='tracking-tight font-semibold text-2xl md:text-5xl lg:text-7xl xl:text-8xl'>
+        <span className='text-white'>Welcome to the </span>
+        <span className='from-[#FF1CF7] to-[#b249f8] bg-clip-text text-transparent bg-gradient-to-b'>
+          Solar System
+        </span>
+      </h1>
     </motion.div>
   );
 };

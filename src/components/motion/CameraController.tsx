@@ -20,7 +20,7 @@ const CameraController: React.FC = () => {
   const [selectedPlanet] = useSelectedPlanet();
   const { planetPositions } = usePlanetPositions();
   const { cameraState, setCameraState } = useCameraContext();
-  const homePosition = useRef(new Vector3(7, 1, 2)).current;
+  const homePosition = useRef(new Vector3(11, 1, 1)).current;
   const lerpFactor = 0.015;
   const cameraPositionEpsilon = 0.1;
   const detailViewMinDistance = useRef(2).current;
