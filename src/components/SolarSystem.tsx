@@ -26,7 +26,7 @@ function SolarSystem() {
 
   return (
     <>
-      <Canvas camera={{ position: [-200, 0, 200] }}>
+      <Canvas camera={{ position: [-100, 0, 100] }}>
         <CameraController />
         <SceneBackground texturePath="/images/background/stars_8k.jpg" />
         <SceneLighting />

@@ -20,7 +20,7 @@ const CameraController: React.FC = () => {
   const [selectedPlanet] = useSelectedPlanet();
   const { planetPositions } = usePlanetPositions();
   const { cameraState, setCameraState } = useCameraContext();
-  const homePosition = useRef(new Vector3(7, 6, 7)).current;
+  const homePosition = useRef(new Vector3(7, 1, 2)).current;
   const lerpFactor = 0.015;
   const cameraPositionEpsilon = 0.1;
   const detailViewMinDistance = useRef(2).current;
@@ -65,9 +65,9 @@ const CameraController: React.FC = () => {
         case 'INTRO_ANIMATION':
           if (!introAnimationCompleted.current) {
             controls.enabled = false;
-            camera.position.lerp(homePosition, 0.07);
+            camera.position.lerp(homePosition, 0.01);
             camera.lookAt(invisibleTargetRef);
-            if (camera.position.distanceTo(homePosition) < 0.001) {
+            if (camera.position.distanceTo(homePosition) < 0.01) {
               introAnimationCompleted.current = true;
               camera.position.copy(homePosition);
               setCameraState('FREE');
