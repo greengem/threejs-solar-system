@@ -1,8 +1,8 @@
 // SolarSystem.tsx
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PlanetData } from '../../types';
 import { Canvas } from '@react-three/fiber';
-import { useCameraContext } from '../contexts/CameraContext';
+import { AnimatePresence } from 'framer-motion';
 import planetsData from '../lib/planetsData';
 import SceneBackground from './SceneBackground';
 import Sun from './celestial/Sun';
@@ -16,18 +16,13 @@ import ControlMenu from './ui/ControlMenu/ControlMenu';
 import SceneLighting from './SceneLighting';
 
 function SolarSystem() {
-  const { cameraState } = useCameraContext();
-  const [showDetails, setShowDetails] = useState(true);
+  
   const [planetOrbitProgress, setPlanetOrbitProgress] = useState<{ [key: string]: number }>(
     planetsData.reduce<{ [key: string]: number }>((acc, planet: PlanetData) => {
       acc[planet.name] = 0;
       return acc;
     }, {})
   );
-
-  useEffect(() => {
-    setShowDetails(cameraState === 'DETAIL_VIEW');
-  }, [cameraState]);
 
   return (
     <>
@@ -38,7 +33,8 @@ function SolarSystem() {
         <Sun position={[0, 0, 0]} radius={1} />
         {planetsData.map((planet) => (
           <Planet
-            key={planet.name}
+            key={planet.id}
+            id={planet.id}
             name={planet.name}
             texturePath={planet.texturePath}
             position={planet.position}
@@ -56,11 +52,10 @@ function SolarSystem() {
       </Canvas>
       <PlanetMenu planets={planetsData} />
       <SpeedControl />
-      {showDetails && <PlanetDetail visible={showDetails} />}
+      <AnimatePresence>
+        <PlanetDetail />
+      </AnimatePresence>
       <ControlMenu />
-      <div className='hidden absolute top-20 right-5 bg-gray-900 py-1 px-3 text-xs rounded-xl'>
-        <p>CAMERA STATE DEBUG: <span className='text-danger'>{JSON.stringify(cameraState, null, 2)}</span></p>
-      </div>
     </>
   );
 }
