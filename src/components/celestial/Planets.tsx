@@ -1,5 +1,4 @@
 import { useMemo, useEffect } from 'react';
-import { useCameraContext } from '../../contexts/CameraContext';
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
@@ -17,7 +16,6 @@ const Planet: React.FC<ExtendedPlanetData> = ({
   wobble,
   orbitProgress,
 }) => {
-  const { cameraState } = useCameraContext();
   const { setPlanetPosition } = usePlanetPositions();
   const texture = useLoader(TextureLoader, texturePath);
   const sphereArgs = useMemo(() => [radius, 32, 32] as [number, number, number], [radius]);
@@ -40,7 +38,7 @@ const Planet: React.FC<ExtendedPlanetData> = ({
           )}
         </Sphere>
       </mesh>
-      {(cameraState === 'FREE' || cameraState === 'INTRO_ANIMATION') && <Ring radius={orbitRadius} />}
+      <Ring radius={orbitRadius} />
     </>
   );
 };
