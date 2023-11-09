@@ -23,7 +23,7 @@ const CameraController: React.FC = () => {
   const lerpFactor = 0.03;
   const cameraPositionEpsilon = 0.1;
   const detailViewMinDistance = useRef(2).current;
-  const detailViewMaxDistance = useRef(4).current;
+  const detailViewMaxDistance = useRef(3).current;
 
   const introAnimationCompleted = useRef(false);
 
@@ -87,7 +87,7 @@ const CameraController: React.FC = () => {
             if (currentPlanetPosition) {
               controls.enabled = false;
               const planetPosition = new Vector3(...currentPlanetPosition);
-              const targetCameraPosition = planetPosition.clone().add(new Vector3(0.9, 0.1, 0).multiplyScalar(selectedPlanet.radius * 3));
+              const targetCameraPosition = planetPosition.clone().add(new Vector3(0.7, 0, 0).multiplyScalar(selectedPlanet.radius * 3));
               camera.position.lerp(targetCameraPosition, lerpFactor);
               camera.lookAt(planetPosition);
 
