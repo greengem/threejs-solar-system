@@ -14,7 +14,6 @@ import SpeedControl from './ui/SpeedControl';
 import PlanetDetail from './ui/PlanetDetail';
 import ControlMenu from './ui/ControlMenu/ControlMenu';
 import SceneLighting from './SceneLighting';
-import BugList from './BugList';
 
 function SolarSystem() {
   
@@ -57,7 +56,6 @@ function SolarSystem() {
         <PlanetDetail />
       </AnimatePresence>
       <ControlMenu />
-      <BugList />
     </>
   );
 }

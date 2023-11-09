@@ -22,12 +22,13 @@ const InfoButton = () => {
         <>
           <ModalHeader className="flex flex-col gap-1">Solar System Experiment by Chris Waitt</ModalHeader>
           <ModalBody>
+            <p>Todo:</p>
             <ul className="text-sm">
-              <li>React 18</li>
-              <li>Three.js</li>
-              <li>React Three Fiber</li>
-              <li>React Three Drei</li>
-              <li>Framer Motion</li>
+              <li>Rings of Satrn</li>
+              <li>Moons or at least Earths moon</li>
+              <li>Accurate Lighting</li>
+              <li>Accurate planet atmospheres</li>
+              <li>Bugs</li>
             </ul>
             <p>Read more about it on <a className="text-secondary" target="_blank" rel="noopener noreferrer" href="https://cwaitt.dev/projects/solar-system">my website</a>.</p>
           </ModalBody>
