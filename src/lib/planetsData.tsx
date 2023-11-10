@@ -135,8 +135,8 @@ const planetsData: PlanetData[] = [
     tilt: 0.46653,
     orbitSpeed: baseOrbitSpeed / 29.46,
     rings: {
-      texturePath: "/images/bodies/saturn_ring_2k.png",
-      size: [0.22, 0.4],
+      texturePath: "/images/bodies/saturn_ring.png",
+      size: [0.2, 0.46],
     },
     displayStats: {
       classification: "Gas giant",
