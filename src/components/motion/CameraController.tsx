@@ -24,7 +24,7 @@ const CameraController: React.FC = () => {
   const lerpFactor = 0.015;
   const cameraPositionEpsilon = 0.1;
   const detailViewMinDistance = useRef(2).current;
-  const detailViewMaxDistance = useRef(3).current;
+  const detailViewMaxDistance = useRef(5).current;
   const introAnimationCompleted = useRef(false);
 
   // Initialize orbit controls target
