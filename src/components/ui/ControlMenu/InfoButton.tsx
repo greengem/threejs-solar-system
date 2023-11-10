@@ -24,10 +24,10 @@ const InfoButton = () => {
           <ModalBody>
             <p>Todo:</p>
             <ul className="text-sm">
-              <li>Rings of Satrn</li>
-              <li>Moons or at least Earths moon</li>
+              <li>Earths moon</li>
               <li>Accurate Lighting</li>
               <li>Accurate planet atmospheres</li>
+              <li>Clipping through objects</li>
               <li>Bugs</li>
             </ul>
             <p>Read more about it on <a className="text-secondary" target="_blank" rel="noopener noreferrer" href="https://cwaitt.dev/projects/solar-system">my website</a>.</p>
