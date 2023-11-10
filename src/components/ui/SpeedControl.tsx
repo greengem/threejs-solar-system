@@ -28,7 +28,6 @@ const SpeedControl = () => {
       variants={speedControlVariants}
       initial="hidden"
       animate={controls}
-      style={{ height: 300 }} // Inline style for height to ensure it's applied
     >
       <Slider
           isDisabled={cameraState === 'ZOOMING_IN' || cameraState === 'DETAIL_VIEW'}
@@ -42,6 +41,7 @@ const SpeedControl = () => {
           orientation="vertical"
           color='secondary'
           size="lg"
+          className='h-[300px]'
       />
     </motion.div>
   );
