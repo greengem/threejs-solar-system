@@ -65,7 +65,7 @@ const CameraController: React.FC = () => {
         case 'INTRO_ANIMATION':
           if (!introAnimationCompleted.current) {
             controls.enabled = false;
-            camera.position.lerp(homePosition, 0.01);
+            camera.position.lerp(homePosition, 0.015);
             camera.lookAt(invisibleTargetRef);
             if (camera.position.distanceTo(homePosition) < 0.01) {
               introAnimationCompleted.current = true;
