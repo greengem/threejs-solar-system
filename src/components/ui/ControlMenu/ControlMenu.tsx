@@ -17,7 +17,7 @@ const ControlMenu = () => {
     }, [cameraState, controls]);
 
     const menuVariants = {
-        hidden: { y: '-130%', opacity: 1 },
+        hidden: { y: '-140%', opacity: 1 },
         visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } }
     };
 
