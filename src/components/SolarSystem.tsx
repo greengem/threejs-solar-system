@@ -28,7 +28,7 @@ function SolarSystem() {
     <>
       <Canvas camera={{ position: [-100, 0, 100] }}>
         <CameraController />
-        <SceneBackground texturePath="/images/background/stars_8k.jpg" />
+        <SceneBackground texturePath="/images/background/stars_8k.webp" />
         <SceneLighting />
         <Sun position={[0, 0, 0]} radius={1} />
         {planetsData.map((planet) => (

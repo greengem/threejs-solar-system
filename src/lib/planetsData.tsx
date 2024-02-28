@@ -8,7 +8,7 @@ const planetsData: PlanetData[] = [
   {
     id: 1,
     name: "Mercury",
-    texturePath: "/images/bodies/mercury_2k.jpg",
+    texturePath: "/images/bodies/mercury_2k.webp",
     position: new Vector3(1.5, 0, 0),
     radius: 0.1,
     rotationSpeed: 1,
@@ -32,7 +32,7 @@ const planetsData: PlanetData[] = [
   {
     id: 2,
     name: "Venus",
-    texturePath: "/images/bodies/venus_surface_2k.jpg",
+    texturePath: "/images/bodies/venus_surface_2k.webp",
     position: new Vector3(2.2, 0, 0),
     radius: 0.15,
     rotationSpeed: 1,
@@ -56,7 +56,7 @@ const planetsData: PlanetData[] = [
   {
     id: 3,
     name: "Earth",
-    texturePath: "/images/bodies/earth_2k.jpg",
+    texturePath: "/images/bodies/earth_2k.webp",
     position: new Vector3(3, 0, 0),
     radius: 0.15,
     rotationSpeed: 1,
@@ -80,7 +80,7 @@ const planetsData: PlanetData[] = [
   {
     id: 4,
     name: "Mars",
-    texturePath: "/images/bodies/mars_2k.jpg",
+    texturePath: "/images/bodies/mars_2k.webp",
     position: new Vector3(4, 0, 0),
     radius: 0.13,
     rotationSpeed: 0.5,
@@ -104,7 +104,7 @@ const planetsData: PlanetData[] = [
   {
     id: 5,
     name: "Jupiter",
-    texturePath: "/images/bodies/jupiter_2k.jpg",
+    texturePath: "/images/bodies/jupiter_2k.webp",
     position: new Vector3(6, 0, 0),
     radius: 0.25,
     rotationSpeed: 0.2,
@@ -128,7 +128,7 @@ const planetsData: PlanetData[] = [
   {
     id: 6,
     name: "Saturn",
-    texturePath: "/images/bodies/saturn_2k.jpg",
+    texturePath: "/images/bodies/saturn_2k.webp",
     position: new Vector3(9, 0, 0),
     radius: 0.2,
     rotationSpeed: 0.1,
@@ -156,7 +156,7 @@ const planetsData: PlanetData[] = [
   {
     id: 7,
     name: "Uranus",
-    texturePath: "/images/bodies/uranus_2k.jpg",
+    texturePath: "/images/bodies/uranus_2k.webp",
     position: new Vector3(13, 0, 0),
     radius: 0.18,
     rotationSpeed: 0.07,
@@ -180,7 +180,7 @@ const planetsData: PlanetData[] = [
   {
     id: 8,
     name: "Neptune",
-    texturePath: "/images/bodies/neptune_2k.jpg",
+    texturePath: "/images/bodies/neptune_2k.webp",
     position: new Vector3(17, 0, 0),
     radius: 0.18,
     rotationSpeed: 0.06,
