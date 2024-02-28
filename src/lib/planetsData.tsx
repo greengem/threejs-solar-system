@@ -135,7 +135,7 @@ const planetsData: PlanetData[] = [
     tilt: 0.46653,
     orbitSpeed: baseOrbitSpeed / 29.46,
     rings: {
-      texturePath: "/images/bodies/saturn_ring.png",
+      texturePath: "/images/bodies/saturn_ring.webp",
       size: [0.2, 0.46],
     },
     displayStats: {
