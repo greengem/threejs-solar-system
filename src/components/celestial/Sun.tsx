@@ -1,14 +1,14 @@
-import { Vector3, TextureLoader } from 'three';
-import { useLoader } from '@react-three/fiber';
-import { MeshWobbleMaterial, Sphere } from '@react-three/drei';
+import { Vector3, TextureLoader } from "three";
+import { useLoader } from "@react-three/fiber";
+import { MeshWobbleMaterial, Sphere } from "@react-three/drei";
 
 interface SunProps {
   position: Vector3 | [number, number, number];
   radius: number;
 }
 
-const Sun: React.FC<SunProps> = ({ position, radius }) => {
-  const sunTexture = useLoader(TextureLoader, '/images/bodies/sun_2k.webp');
+export default function Sun({ position, radius }: SunProps) {
+  const sunTexture = useLoader(TextureLoader, "/images/bodies/sun_2k.webp");
 
   return (
     <mesh position={position}>
@@ -23,6 +23,4 @@ const Sun: React.FC<SunProps> = ({ position, radius }) => {
       </Sphere>
     </mesh>
   );
-};
-
-export default Sun;
+}
