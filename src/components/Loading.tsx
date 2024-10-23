@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { Progress } from '@nextui-org/react'; // Ensure this import is correct
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { Progress } from "@nextui-org/react";
+import { motion } from "framer-motion";
 
 const containerVariants = {
   initial: { opacity: 1 },
   exit: { opacity: 0 },
 };
 
-const LoadingScreen = () => {
+export default function LoadingScreen() {
   // State to keep track of the loading progress
   const [value, setValue] = useState(0);
 
@@ -44,6 +44,4 @@ const LoadingScreen = () => {
       <p>Loading... {value}%</p>
     </motion.div>
   );
-};
-
-export default LoadingScreen;
+}
