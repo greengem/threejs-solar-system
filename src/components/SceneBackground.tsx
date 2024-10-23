@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { useLoader, useThree } from '@react-three/fiber';
-import { TextureLoader, EquirectangularReflectionMapping } from 'three';
+import { useEffect } from "react";
+import { useLoader, useThree } from "@react-three/fiber";
+import { TextureLoader, EquirectangularReflectionMapping } from "three";
 
-type SceneBackgroundProps = {
+export default function SceneBackground({
+  texturePath,
+}: {
   texturePath: string;
-};
-
-const SceneBackground: React.FC<SceneBackgroundProps> = ({ texturePath }) => {
+}) {
   const { scene } = useThree();
   const texture = useLoader(TextureLoader, texturePath);
   texture.mapping = EquirectangularReflectionMapping;
@@ -20,6 +20,4 @@ const SceneBackground: React.FC<SceneBackgroundProps> = ({ texturePath }) => {
   }, [texture, scene]);
 
   return null;
-};
-
-export default SceneBackground;
+}
